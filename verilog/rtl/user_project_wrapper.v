@@ -30,20 +30,19 @@
  */
 
 module user_project_wrapper #(
-    parameter BITS = 32
+	parameter BITS = 32
 ) (
 `ifdef USE_POWER_PINS
-    inout vdda1,	// User area 1 3.3V supply
-    inout vdda2,	// User area 2 3.3V supply
-    inout vssa1,	// User area 1 analog ground
-    inout vssa2,	// User area 2 analog ground
-    inout vccd1,	// User area 1 1.8V supply
-    inout vccd2,	// User area 2 1.8v supply
-    inout vssd1,	// User area 1 digital ground
-    inout vssd2,	// User area 2 digital ground
+	inout vdda1,	// User area 1 3.3V supply
+	inout vdda2,	// User area 2 3.3V supply
+	inout vssa1,	// User area 1 analog ground
+	inout vssa2,	// User area 2 analog ground
+	inout vccd1,	// User area 1 1.8V supply
+	inout vccd2,	// User area 2 1.8v supply
+	inout vssd1,	// User area 1 digital ground
+	inout vssd2,	// User area 2 digital ground
 `endif
-
-    // Wishbone Slave ports (WB MI A)
+// Wishbone Slave ports (WB MI A)
     input wb_clk_i,
     input wb_rst_i,
     input wbs_stb_i,
@@ -75,48 +74,68 @@ module user_project_wrapper #(
     input   user_clock2,
 
     // User maskable interrupt signals
-    output [2:0] user_irq
+	output [2:0] user_irq
+
 );
 
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
+	wire [162:0] configBus, dataBus;
+	wire ki;
+	wire slave_ena, w_slvDone, w_load_data, w_trigLoad;
+	wire [2:0] w_loadStatus;
+	wire [3:0] w_becStatus;
+	wire next_key;
 
-user_proj_example mprj (
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
+	lovers_controller control_unit (
+	`ifdef USE_POWER_PINS
+		.vccd1(vccd1),	// User area 1 1.8V power
+		.vssd1(vssd1),	// User area 1 digital ground
+	`endif
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+		.wb_clk_i(wb_clk_i),
+		.wb_rst_i(wb_rst_i),
+		
+		// Logic Analyzer
 
-    // MGMT SoC Wishbone Slave
+		.la_data_in(la_data_in),
+		.la_data_out(la_data_out),
+		
+		// Control bus sm_bec_v3
+		.master_ena_proc(slave_ena),
+		.load_status(w_loadStatus),
+		.next_key(next_key),
+		.slv_done(w_slvDone),
+		.becStatus(w_becStatus),
+		.trigLoad(w_trigLoad),
+		.load_data(w_load_data),
+		// Data bus sm_bec_v3
+		.data_out(configBus),
+		.data_in(dataBus),
+		.ki(ki)
+	);
 
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
+	lovers_sm_bec_v3 bec_core (
+		`ifdef USE_POWER_PINS
+			.vccd2(vccd2),  // User area 2 1.8V power
+			.vssd2(vssd2),  // User area 2 digital ground
+		`endif
 
-    // Logic Analyzer
+		.clk(wb_clk_i),
+		.rst(wb_rst_i),
+		.enable(slave_ena),
+		.load_data(w_load_data),
 
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in ({io_in[37:30],io_in[7:0]}),
-    .io_out({io_out[37:30],io_out[7:0]}),
-    .io_oeb({io_oeb[37:30],io_oeb[7:0]}),
-
-    // IRQ
-    .irq(user_irq)
-);
+		.load_status(w_loadStatus),
+		.data_in(configBus),
+		.ki(ki),
+		.trigLoad(w_trigLoad),
+		.next_key(next_key),
+		.becStatus(w_becStatus),
+		.data_out(dataBus),
+		.done(w_slvDone)
+	);
 
 endmodule	// user_project_wrapper
 
