@@ -13,7 +13,7 @@
 // // limitations under the License.
 // // SPDX-License-Identifier: Apache-2.0
 
-module lovers_sm_bec_v3 (
+module lovers_bec (
 `ifdef USE_POWER_PINS
 	inout vccd2,	// User area 2 1.8v supply
 	inout vssd2,	// User area 2 digital ground

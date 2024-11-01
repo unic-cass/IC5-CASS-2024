@@ -116,7 +116,7 @@ module user_project_wrapper #(
 		.ki(ki)
 	);
 
-	lovers_sm_bec_v3 bec_core (
+	lovers_bec bec_core (
 		`ifdef USE_POWER_PINS
 			.vccd2(vccd2),  // User area 2 1.8V power
 			.vssd2(vssd2),  // User area 2 digital ground

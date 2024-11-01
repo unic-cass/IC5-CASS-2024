@@ -1,45 +1,44 @@
 {
-    "DESIGN_NAME": "lovers_sm_bec_v3",
+    "DESIGN_NAME": "lovers_bec",
     "DESIGN_IS_CORE": 0,
     "VERILOG_FILES": [
         "dir::../../verilog/rtl/defines.v",
-        "dir::../../verilog/rtl/lovers_sm_bec_v3.v",
-        "dir::../../verilog/rtl/acb.v",
-        "dir::../../verilog/rtl/interleaved_mult.v",
-        "dir::../../verilog/rtl/classic_squarer.v"
+        "dir::../../verilog/rtl/loversBEC/lovers_bec.v",
+        "dir::../../verilog/rtl/loversBEC/lovers_acb.v",
+        "dir::../../verilog/rtl/loversBEC/lovers_interleaved_mult.v",
+        "dir::../../verilog/rtl/loversBEC/lovers_classic_squarer.v"
     ],
     "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "clk",
     "CLOCK_NET": "clk",
-	"FP_SIZING": "absolute",
-    "FP_CORE_UTIL": 40,
-    "DIE_AREA": "0 0 700 580",
+    "SYNTH_STRATEGY": DELAY 4,
+    "FP_SIZING": "relative",
     "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
-    "FP_ASPECT_RATIO": 0.8, 
+    "FP_ASPECT_RATIO": 3,
+    "FP_IO_MIN_DISTANCE": 400,
     "MAX_TRANSITION_CONSTRAINT": 1.0,
     "MAX_FANOUT_CONSTRAINT": 5,
-    "PL_TARGET_DENSITY": 0.46,
+    "PL_TARGET_DENSITY": 0.47,
     "PL_RESIZER_SETUP_SLACK_MARGIN": 0.1,
     "GLB_RESIZER_SETUP_SLACK_MARGIN": 0.02,
-    "GLB_RESIZER_HOLD_SLACK_MARGIN": 0.05,
+    "GLB_RESIZER_HOLD_SLACK_MARGIN": 0.02,
     
     "ROUTING_CORES": 5,
 	"DRT_OPT_ITERS": 64,
 	"GLB_RESIZER_MAX_SLEW_MARGIN": 0.02,
     "GLB_RESIZER_MAX_CAP_MARGIN": 0.02,
 	"DIODE_INSERTION_STRATEGY": 6,
-    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.4,
+    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.2,
 	"DIODE_PADDING": 1,
 	"GRT_OVERFLOW_ITERS": 100,
-	"PL_MAX_DISPLACEMENT_X": 200,
+	"PL_MAX_DISPLACEMENT_X": 300,
 	"PL_MAX_DISPLACEMENT_Y": 200,
 	"GRT_ALLOW_CONGESTION": 0,
-	"GPL_CELL_PADDING": 1,
-	"GRT_ADJUSTMENT": 0.1,
+	"GRT_ADJUSTMENT": 0.05,
 	"MAGIC_DEF_LABELS": 0,
     "SYNTH_BUFFERING": 0,
     "RUN_HEURISTIC_DIODE_INSERTION": 1,
-    "HEURISTIC_ANTENNA_THRESHOLD": 110,    
+    "HEURISTIC_ANTENNA_THRESHOLD": 100,    
     "GRT_REPAIR_ANTENNAS": 1,
     "VDD_NETS": [
         "vccd2"
@@ -48,10 +47,10 @@
         "vssd2"
     ],
     "IO_SYNC": 0,
-    "BASE_SDC_FILE": "dir::base_sm_bec_v3.sdc",
+    "BASE_SDC_FILE": "dir::base_lovers_bec.sdc",
     "RUN_CVC": 1,
     "pdk::sky130*": {
-        "FP_CORE_UTIL": 48,
+        "FP_CORE_UTIL": 40,
         "RT_MAX_LAYER": "met4",
         "scl::sky130_fd_sc_hd": {
             "CLOCK_PERIOD": 25
@@ -79,3 +78,4 @@
         "PL_TARGET_DENSITY": 0.45
     }
 }
+
