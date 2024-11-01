@@ -27,11 +27,11 @@
                    "dir::../../lib/lovers_sm_bec_v3.lib"
                   ],
     "EXTRA_SPEFS": [
-        "controller", 
+        "lovers_controller", 
         "dir::../../spef/multicorner/lovers_controller.min.spef", 
         "dir::../../spef/multicorner/lovers_controller.nom.spef", 
         "dir::../../spef/multicorner/lovers_controller.max.spef",
-        "sm_bec_v3", 
+        "lovers_sm_bec_v3", 
         "dir::../../spef/multicorner/lovers_sm_bec_v3.min.spef", 
         "dir::../../spef/multicorner/lovers_sm_bec_v3.nom.spef", 
         "dir::../../spef/multicorner/lovers_sm_bec_v3.max.spef"
