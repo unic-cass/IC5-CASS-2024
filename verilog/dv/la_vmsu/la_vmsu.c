@@ -29,6 +29,8 @@
 		- Outputs message to the UART when the test concludes successfuly
 */
 
+static void delay(int delayTime) { volatile int i; for(i = 0; i < delayTime; i++); }
+
 void main()
 {
 	int j;
@@ -57,7 +59,7 @@ void main()
 	// designed to read the project count through the
 	// logic analyzer probes.
 	// I/O 6 is configured for the UART Tx line
-
+    
         reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
         reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
         reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -96,35 +98,56 @@ void main()
 	// Set UART clock to 64 kbaud (enable before I/O configuration)
 	// reg_uart_clkdiv = 625;
 	reg_uart_enable = 1;
-
+    
     // Now, apply the configuration
     reg_mprj_xfer = 1;
     while (reg_mprj_xfer == 1);
 
-    // Configure LA probes [31:0], [127:64] as inputs to the cpu 
-	// Configure LA probes [63:32] as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+    // Configure LA probes 2 [95:64] as outputs to the cpu 
+	// Configure LA probes [127:96] as inputs from the cpu
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
 	// Flag start of the test 
 	reg_mprj_datal = 0xAB400000;
 
-	// Set Counter value to zero through LA probes [63:32]
-	reg_la1_data = 0x00000000;
+	// Set VMSU value to zero through LA probes [95:64]
+	reg_la2_data = 0x00000000;
+    delay(10);
+	reg_la2_data = 0x00000101;
+    delay(10);
+	reg_la2_data = 0x00012D3C;
+    delay(10);
+	reg_la2_data = 0x000064C8;
+    delay(10);
+	reg_la2_data = 0x00002B35;
+    delay(10);
+	reg_la2_data = 0x0001D578;
+    delay(10);
+	reg_la2_data = 0x00000704;
+    delay(10);
+	reg_la2_data = 0x0001433C;
+    delay(10);
+	reg_la2_data = 0x000068D2;
+    delay(10);
+	reg_la2_data = 0x00016235;
+    delay(10);
+	reg_la2_data = 0x0001D592;
+    delay(10);
+	reg_la2_data = 0x00008215;
+    delay(10);
+	reg_la2_data = 0x00002B35;
+    delay(10);
+	reg_la2_data = 0x0000D578;
+    delay(10);
 
-	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    
+    
 
 	while (1) {
-		if (reg_la0_data_in > 0x1F4) {
+		if (reg_la3_data_in == 0x000063D8) {
 			reg_mprj_datal = 0xAB410000;
 			break;
 		}
 	}
-	print("\n");
-	print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
-	reg_mprj_datal = 0xAB510000;
 }
 

@@ -81,61 +81,19 @@ module user_project_wrapper #(
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
-	wire [162:0] configBus, dataBus;
-	wire ki;
-	wire slave_ena, w_slvDone, w_load_data, w_trigLoad;
-	wire [2:0] w_loadStatus;
-	wire [3:0] w_becStatus;
-	wire next_key;
+vmsu_8bit_top vmsu_8bit_top (
+`ifdef USE_POWER_PINS
+	.vccd1(vccd1),	// User area 1 1.8V power
+	.vssd1(vssd1),	// User area 1 digital ground
+`endif
 
-	lovers_controller control_unit (
-	`ifdef USE_POWER_PINS
-		.vccd1(vccd1),	// User area 1 1.8V power
-		.vssd1(vssd1),	// User area 1 digital ground
-	`endif
-
-		.wb_clk_i(wb_clk_i),
-		.wb_rst_i(wb_rst_i),
-		
-		// Logic Analyzer
-
-		.la_data_in(la_data_in),
-		.la_data_out(la_data_out),
-		
-		// Control bus sm_bec_v3
-		.master_ena_proc(slave_ena),
-		.load_status(w_loadStatus),
-		.next_key(next_key),
-		.slv_done(w_slvDone),
-		.becStatus(w_becStatus),
-		.trigLoad(w_trigLoad),
-		.load_data(w_load_data),
-		// Data bus sm_bec_v3
-		.data_out(configBus),
-		.data_in(dataBus),
-		.ki(ki)
-	);
-
-	lovers_bec bec_core (
-		`ifdef USE_POWER_PINS
-			.vccd2(vccd2),  // User area 2 1.8V power
-			.vssd2(vssd2),  // User area 2 digital ground
-		`endif
-
-		.clk(wb_clk_i),
-		.rst(wb_rst_i),
-		.enable(slave_ena),
-		.load_data(w_load_data),
-
-		.load_status(w_loadStatus),
-		.data_in(configBus),
-		.ki(ki),
-		.trigLoad(w_trigLoad),
-		.next_key(next_key),
-		.becStatus(w_becStatus),
-		.data_out(dataBus),
-		.done(w_slvDone)
-	);
+    .clk(wb_clk_i),    // Connect clock from wishbone clock input
+    .rst(wb_rst_i),    // Connect reset from wishbone reset input
+    .a(la_data_in[71:64]),    // Map input A from IO pads (8 bits)
+    .b(la_data_in[79:72]),   // Map input B from IO pads (8 bits)
+    .control(la_data_in[80]), // Map control signal from Logic Analyzer
+    .p(la_data_out[111:96])   // Output the result P to IO pads (16 bits)
+);
 
 endmodule	// user_project_wrapper
 

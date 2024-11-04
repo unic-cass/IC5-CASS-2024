@@ -3,15 +3,15 @@
     "DESIGN_IS_CORE": 0,
     "VERILOG_FILES": [
         "dir::../../verilog/rtl/defines.v",
-        "dir::../../verilog/rtl/loversBEC/lovers_bec.v",
-        "dir::../../verilog/rtl/loversBEC/lovers_acb.v",
-        "dir::../../verilog/rtl/loversBEC/lovers_interleaved_mult.v",
-        "dir::../../verilog/rtl/loversBEC/lovers_classic_squarer.v"
+        "dir::../../verilog/rtl/lovers_bec/lovers_bec.v",
+        "dir::../../verilog/rtl/lovers_bec/lovers_acb.v",
+        "dir::../../verilog/rtl/lovers_bec/lovers_interleaved_mult.v",
+        "dir::../../verilog/rtl/lovers_bec/lovers_classic_squarer.v"
     ],
     "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "clk",
     "CLOCK_NET": "clk",
-    "SYNTH_STRATEGY": DELAY 4,
+    "SYNTH_STRATEGY": "DELAY 4",
     "FP_SIZING": "relative",
     "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
     "FP_ASPECT_RATIO": 3,

@@ -17,7 +17,7 @@
 
 `timescale 1 ns / 1 ps
 
-module la_test1_tb;
+module la_vmsu_tb;
 	reg clock;
     reg RSTB;
 	reg CSB;
@@ -136,8 +136,8 @@ module la_test1_tb;
 	// assign mprj_io[3] = 1'b1;
 
 	initial begin
-		$dumpfile("la_test1.vcd");
-		$dumpvars(0, la_test1_tb);
+		$dumpfile("la_vmsu.vcd");
+		$dumpvars(0, la_vmsu_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (250) begin
@@ -156,10 +156,9 @@ module la_test1_tb;
 
 	initial begin
 		wait(checkbits == 16'hAB40);
-		$display("LA Test 1 started");
+		$display("Test LA VMSU started");
 		wait(checkbits == 16'hAB41);
-		wait(checkbits == 16'hAB51);
-		$display("LA Test 2 passed");
+		$display("Test LA VMSU passed");
 		#10000;
 		$finish;
 	end
@@ -228,7 +227,7 @@ module la_test1_tb;
 	);
 
 	spiflash #(
-		.FILENAME("la_test1.hex")
+		.FILENAME("la_vmsu.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),
