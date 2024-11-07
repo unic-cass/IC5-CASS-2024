@@ -30,20 +30,19 @@
  */
 
 module user_project_wrapper #(
-    parameter BITS = 32
+	parameter BITS = 32
 ) (
 `ifdef USE_POWER_PINS
-    inout vdda1,	// User area 1 3.3V supply
-    inout vdda2,	// User area 2 3.3V supply
-    inout vssa1,	// User area 1 analog ground
-    inout vssa2,	// User area 2 analog ground
-    inout vccd1,	// User area 1 1.8V supply
-    inout vccd2,	// User area 2 1.8v supply
-    inout vssd1,	// User area 1 digital ground
-    inout vssd2,	// User area 2 digital ground
+	inout vdda1,	// User area 1 3.3V supply
+	inout vdda2,	// User area 2 3.3V supply
+	inout vssa1,	// User area 1 analog ground
+	inout vssa2,	// User area 2 analog ground
+	inout vccd1,	// User area 1 1.8V supply
+	inout vccd2,	// User area 2 1.8v supply
+	inout vssd1,	// User area 1 digital ground
+	inout vssd2,	// User area 2 digital ground
 `endif
-
-    // Wishbone Slave ports (WB MI A)
+// Wishbone Slave ports (WB MI A)
     input wb_clk_i,
     input wb_rst_i,
     input wbs_stb_i,
@@ -75,47 +74,25 @@ module user_project_wrapper #(
     input   user_clock2,
 
     // User maskable interrupt signals
-    output [2:0] user_irq
+	output [2:0] user_irq
+
 );
 
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
-
-user_proj_example mprj (
+vmsu_8bit_top vmsu_8bit_top (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
-
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in ({io_in[37:30],io_in[7:0]}),
-    .io_out({io_out[37:30],io_out[7:0]}),
-    .io_oeb({io_oeb[37:30],io_oeb[7:0]}),
-
-    // IRQ
-    .irq(user_irq)
+    .clk(wb_clk_i),    // Connect clock from wishbone clock input
+    .rst(wb_rst_i),    // Connect reset from wishbone reset input
+    .a(la_data_in[71:64]),    // Map input A from IO pads (8 bits)
+    .b(la_data_in[79:72]),   // Map input B from IO pads (8 bits)
+    .control(la_data_in[80]), // Map control signal from Logic Analyzer
+    .p(la_data_out[111:96])   // Output the result P to IO pads (16 bits)
 );
 
 endmodule	// user_project_wrapper

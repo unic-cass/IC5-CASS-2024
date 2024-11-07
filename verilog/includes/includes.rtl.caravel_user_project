@@ -14,7 +14,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Caravel user project includes
--v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
--v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
+# Top-integration Module
+-v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	 
+
+# LOVERS BEC Projects
+-v $(USER_PROJECT_VERILOG)/rtl/lovers_bec/lovers_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/lovers_bec/lovers_bec.v
+-v $(USER_PROJECT_VERILOG)/rtl/lovers_bec/lovers_acb.v
+-v $(USER_PROJECT_VERILOG)/rtl/lovers_bec/lovers_interleaved_mult.v
+-v $(USER_PROJECT_VERILOG)/rtl/lovers_bec/lovers_classic_squarer.v
+
+# VMSU 8 bit Projects
+-v $(USER_PROJECT_VERILOG)/rtl/vmsu_8bit/vmsu_8bit_top.v
+
 
  
