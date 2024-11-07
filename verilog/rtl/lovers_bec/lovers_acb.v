@@ -13,10 +13,6 @@
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
 
-// `default_nettype none
-//`include "../../../verilog/rtl/classic_squarer.v"
-//`include "../../../verilog/rtl/interleaved_mult.v"
-
 module acb (    
     input clk, 
     input rst,
@@ -47,15 +43,5 @@ module acb (
         .done(done)
     );
 
-    // always @(posedge clk or rst) begin
-    //     if (rst) begin
-    //         C <= 0;
-    //     end else begin
-    //         if (~configuration)
-    //             C <= c_tmp;
-    //         else
-    //             C <= z_tmp;
-    //     end
-    // end
 endmodule
 `default_nettype wire

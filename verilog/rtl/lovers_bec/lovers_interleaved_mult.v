@@ -24,14 +24,14 @@ module shift_reg (clk, load, shift_r, rst, A, Z);
    
    assign Z = aa;
 
-   always @(posedge clk or posedge rst) begin
+   always @(posedge clk) begin
 	   if (rst)
 		   aa <= 0;
 	   else if (load)
 		   aa <= A;
 	   else if (shift_r) begin
 		  if (aa[162]) begin
-			aa <= (aa << 1) ^163'h0000000000000000000000000000000000000000C9;
+			aa <= (aa << 1) ^ {3'b000, 160'h00000000000000000000000000000000000000C9};
 			// aa[7:0] <= aa[7:0] ^ 8'hC9;
 		  end else begin
 			aa <= aa << 1;
@@ -45,17 +45,11 @@ endmodule
 // interleaved_mult
 //---------------------------------
 
-module interleaved_mult (
-    
-    `ifdef USE_POWER_PINS
-        inout vccd2,	// User area 2 1.8v supply
-        inout vssd2,	// User area 2 digital ground
-    `endif
-    
-	input  [162:0] A, B,
-	input  clk, rst, start,
-	output wire [162:0] Z,
-	output wire done);
+module interleaved_mult (clk, rst, start, A, B, Z, done);
+	input  [162:0] A, B;
+	input  clk, rst, start;
+	output wire [162:0] Z;
+	output wire done;
 
 	reg load_done, shift_r;
 	reg [7:0] count;
@@ -77,7 +71,7 @@ module interleaved_mult (
 		.Z(regA)
 	);
 
-	always @(posedge clk or posedge rst) begin
+	always @(posedge clk) begin
 		if (rst) begin
 			count <= 0;
 			count_done <= 1'b0;
@@ -105,7 +99,7 @@ module interleaved_mult (
 	end
 
 	//FSM process
-	always @(posedge clk or posedge rst) begin
+	always @(posedge clk) begin
 		if (rst) begin
 			shift_r <= 1'b0;
 			load_done <= 1'b0;
@@ -135,7 +129,7 @@ module interleaved_mult (
 	end
 	
 
-	always @(posedge clk or posedge rst) begin
+	always @(posedge clk) begin
 		if (rst)
 			current_state <= IDLE;
 		else
