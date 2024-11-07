@@ -51,14 +51,6 @@ puts "\[INFO\]: Setting timing derate to: [expr {$::env(SYNTH_TIMING_DERATE) * 1
 # Reset input delay
 set_input_delay [expr $::env(CLOCK_PERIOD) * 0.5] -clock [get_clocks {clk}] [get_ports {rst}]
 
-# Multicycle paths
-set_multicycle_path -setup 2 -through [get_ports {wbs_ack_o}]
-set_multicycle_path -hold 1  -through [get_ports {wbs_ack_o}]
-set_multicycle_path -setup 2 -through [get_ports {wbs_cyc_i}]
-set_multicycle_path -hold 1  -through [get_ports {wbs_cyc_i}]
-set_multicycle_path -setup 2 -through [get_ports {wbs_stb_i}]
-set_multicycle_path -hold 1  -through [get_ports {wbs_stb_i}]
-
 #------------------------------------------#
 # Retrieved Constraints
 #------------------------------------------#
@@ -80,27 +72,21 @@ puts "\[INFO\]: Setting clock transition: $clk_tran"
 
 # Input delays
 set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {a[*]}]
-set_input_delay -max 1.89 -clock [get_clocks {clk}] [get_ports {b[*]}]
+set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {b[*]}]
 set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {control}]
 
-if { $::env(IO_SYNC) } {
-	set in_ext_delay 4
-	puts "\[INFO\]: Setting input ports external delay to: $in_ext_delay"
-	set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {clk}] [get_ports {io_in[*]}]
-	set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {clk}] [get_ports {io_in[*]}]
-}
 
 # Input Transition
-set_input_transition -max 0.14  [get_ports {a[*]}]
-set_input_transition -max 0.15  [get_ports {b[*]}]
-set_input_transition -max 0.17  [get_ports {control}]
+set_input_transition -max 0.86  [get_ports {a[*]}]
+set_input_transition -max 0.86  [get_ports {b[*]}]
+set_input_transition -max 0.86  [get_ports {control}]
 
 set_input_transition -min 0.07  [get_ports {a[*]}]
 set_input_transition -min 0.07  [get_ports {b[*]}]
 set_input_transition -min 0.07  [get_ports {control}]
 
 # Output delays
-set_output_delay -max 0.7  -clock [get_clocks {clk}] [get_ports {p[*]}]
+set_output_delay -max 1.0  -clock [get_clocks {clk}] [get_ports {p[*]}]
 
 set_output_delay -min 0    -clock [get_clocks {clk}] [get_ports {p[*]}]
 

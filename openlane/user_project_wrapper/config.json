@@ -7,34 +7,24 @@
     "ROUTING_CORES": 2,
     "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "wb_clk_i",
-    "CLOCK_NET": "mprj.clk",
-    "FP_PDN_MACRO_HOOKS": ["control_unit vccd1 vssd1 vccd1 vssd1,",
-                           "bec_core vccd2 vssd2 vccd2 vssd2"
-    ], 
+    "CLOCK_NET": "vmsu_8bit_top.clk",
+    "FP_PDN_MACRO_HOOKS": "vmsu_8bit_top vccd1 vssd1 vccd1 vssd1",
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "MAGIC_DEF_LABELS": 0,
     "VERILOG_FILES_BLACKBOX": [
-        "dir::../../verilog/gl/lovers_controller.v",
-        "dir::../../verilog/gl/lovers_sm_bec_v3.v"
+        "dir::../../verilog/gl/vmsu_8bit_top.v"
         ],
-    "EXTRA_LEFS": ["dir::../../lef/lovers_controller.lef",
-                   "dir::../../lef/lovers_sm_bec_v3.lef"
+    "EXTRA_LEFS": ["dir::../../lef/vmsu_8bit_top.lef"
                   ],
-    "EXTRA_GDS_FILES": [ "dir::../../gds/lovers_controller.gds",
-                         "dir::../../gds/lovers_sm_bec_v3.gds"
+    "EXTRA_GDS_FILES": [ "dir::../../gds/vmsu_8bit_top.gds"
                        ],
-    "EXTRA_LIBS": ["dir::../../lib/lovers_controller.lib",
-                   "dir::../../lib/lovers_sm_bec_v3.lib"
+    "EXTRA_LIBS": ["dir::../../lib/vmsu_8bit_top.lib"
                   ],
     "EXTRA_SPEFS": [
-        "controller", 
-        "dir::../../spef/multicorner/lovers_controller.min.spef", 
-        "dir::../../spef/multicorner/lovers_controller.nom.spef", 
-        "dir::../../spef/multicorner/lovers_controller.max.spef",
-        "sm_bec_v3", 
-        "dir::../../spef/multicorner/lovers_sm_bec_v3.min.spef", 
-        "dir::../../spef/multicorner/lovers_sm_bec_v3.nom.spef", 
-        "dir::../../spef/multicorner/lovers_sm_bec_v3.max.spef"
+        "vmsu_8bit_top", 
+        "dir::../../spef/multicorner/vmsu_8bit_top.min.spef", 
+        "dir::../../spef/multicorner/vmsu_8bit_top.nom.spef", 
+        "dir::../../spef/multicorner/vmsu_8bit_top.max.spef"
     ],
     "BASE_SDC_FILE": "dir::base_user_project_wrapper.sdc",
     "IO_SYNC": 0,

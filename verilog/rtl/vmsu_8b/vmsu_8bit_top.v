@@ -14,53 +14,58 @@ module vmsu_8bit_top (
 	input rst,
 	output [15:0] p
 );
-
+   wire clk_net;
+   reg rst_sync_reg;
 wire [7:0] q_a;
 wire [7:0] q_b;
 wire q_control;
 wire [15:0] d_p;
+   assign clk_net = ~clk;
 
+   always @(posedge clk) begin
+      rst_sync_reg = rst;
+   end
 //input flop
-vmsu8_dff FA0 (.d(a[0]), .clk(clk), .rst(rst), .q(q_a[0]));
-vmsu8_dff FA1 (.d(a[1]), .clk(clk), .rst(rst), .q(q_a[1]));
-vmsu8_dff FA2 (.d(a[2]), .clk(clk), .rst(rst), .q(q_a[2]));
-vmsu8_dff FA3 (.d(a[3]), .clk(clk), .rst(rst), .q(q_a[3]));
-vmsu8_dff FA4 (.d(a[4]), .clk(clk), .rst(rst), .q(q_a[4]));
-vmsu8_dff FA5 (.d(a[5]), .clk(clk), .rst(rst), .q(q_a[5]));
-vmsu8_dff FA6 (.d(a[6]), .clk(clk), .rst(rst), .q(q_a[6]));
-vmsu8_dff FA7 (.d(a[7]), .clk(clk), .rst(rst), .q(q_a[7]));
+vmsu8_dff FA0 (.d(a[0]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[0]));
+vmsu8_dff FA1 (.d(a[1]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[1]));
+vmsu8_dff FA2 (.d(a[2]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[2]));
+vmsu8_dff FA3 (.d(a[3]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[3]));
+vmsu8_dff FA4 (.d(a[4]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[4]));
+vmsu8_dff FA5 (.d(a[5]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[5]));
+vmsu8_dff FA6 (.d(a[6]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[6]));
+vmsu8_dff FA7 (.d(a[7]), .clk(clk_net), .rst(rst_sync_reg), .q(q_a[7]));
 
-vmsu8_dff FB0 (.d(b[0]), .clk(clk), .rst(rst), .q(q_b[0]));
-vmsu8_dff FB1 (.d(b[1]), .clk(clk), .rst(rst), .q(q_b[1]));
-vmsu8_dff FB2 (.d(b[2]), .clk(clk), .rst(rst), .q(q_b[2]));
-vmsu8_dff FB3 (.d(b[3]), .clk(clk), .rst(rst), .q(q_b[3]));
-vmsu8_dff FB4 (.d(b[4]), .clk(clk), .rst(rst), .q(q_b[4]));
-vmsu8_dff FB5 (.d(b[5]), .clk(clk), .rst(rst), .q(q_b[5]));
-vmsu8_dff FB6 (.d(b[6]), .clk(clk), .rst(rst), .q(q_b[6]));
-vmsu8_dff FB7 (.d(b[7]), .clk(clk), .rst(rst), .q(q_b[7]));
+vmsu8_dff FB0 (.d(b[0]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[0]));
+vmsu8_dff FB1 (.d(b[1]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[1]));
+vmsu8_dff FB2 (.d(b[2]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[2]));
+vmsu8_dff FB3 (.d(b[3]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[3]));
+vmsu8_dff FB4 (.d(b[4]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[4]));
+vmsu8_dff FB5 (.d(b[5]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[5]));
+vmsu8_dff FB6 (.d(b[6]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[6]));
+vmsu8_dff FB7 (.d(b[7]), .clk(clk_net), .rst(rst_sync_reg), .q(q_b[7]));
 
-vmsu8_dff FC (.d(control), .clk(clk), .rst(rst), .q(q_control));
+vmsu8_dff FC (.d(control), .clk(clk_net), .rst(rst_sync_reg), .q(q_control));
 
 //combi logic
-vmsu8_vmsu_8bit M0 (.a(q_a), .b(q_b), .control(q_control), .clk(clk), .rst(rst), .p(d_p));
+vmsu8_vmsu_8bit M0 (.a(q_a), .b(q_b), .control(q_control), .clk(clk_net), .rst(rst_sync_reg), .p(d_p));
 
 //output flop
-vmsu8_dff FP0 (.d(d_p[0]), .clk(clk), .rst(rst), .q(p[0]));
-vmsu8_dff FP1 (.d(d_p[1]), .clk(clk), .rst(rst), .q(p[1]));
-vmsu8_dff FP2 (.d(d_p[2]), .clk(clk), .rst(rst), .q(p[2]));
-vmsu8_dff FP3 (.d(d_p[3]), .clk(clk), .rst(rst), .q(p[3]));
-vmsu8_dff FP4 (.d(d_p[4]), .clk(clk), .rst(rst), .q(p[4]));
-vmsu8_dff FP5 (.d(d_p[5]), .clk(clk), .rst(rst), .q(p[5]));
-vmsu8_dff FP6 (.d(d_p[6]), .clk(clk), .rst(rst), .q(p[6]));
-vmsu8_dff FP7 (.d(d_p[7]), .clk(clk), .rst(rst), .q(p[7]));
-vmsu8_dff FP8 (.d(d_p[8]), .clk(clk), .rst(rst), .q(p[8]));
-vmsu8_dff FP9 (.d(d_p[9]), .clk(clk), .rst(rst), .q(p[9]));
-vmsu8_dff FP10 (.d(d_p[10]), .clk(clk), .rst(rst), .q(p[10]));
-vmsu8_dff FP11 (.d(d_p[11]), .clk(clk), .rst(rst), .q(p[11]));
-vmsu8_dff FP12 (.d(d_p[12]), .clk(clk), .rst(rst), .q(p[12]));
-vmsu8_dff FP13 (.d(d_p[13]), .clk(clk), .rst(rst), .q(p[13]));
-vmsu8_dff FP14 (.d(d_p[14]), .clk(clk), .rst(rst), .q(p[14]));
-vmsu8_dff FP15 (.d(d_p[15]), .clk(clk), .rst(rst), .q(p[15]));
+vmsu8_dff FP0 (.d(d_p[0]), .clk(clk_net), .rst(rst_sync_reg), .q(p[0]));
+vmsu8_dff FP1 (.d(d_p[1]), .clk(clk_net), .rst(rst_sync_reg), .q(p[1]));
+vmsu8_dff FP2 (.d(d_p[2]), .clk(clk_net), .rst(rst_sync_reg), .q(p[2]));
+vmsu8_dff FP3 (.d(d_p[3]), .clk(clk_net), .rst(rst_sync_reg), .q(p[3]));
+vmsu8_dff FP4 (.d(d_p[4]), .clk(clk_net), .rst(rst_sync_reg), .q(p[4]));
+vmsu8_dff FP5 (.d(d_p[5]), .clk(clk_net), .rst(rst_sync_reg), .q(p[5]));
+vmsu8_dff FP6 (.d(d_p[6]), .clk(clk_net), .rst(rst_sync_reg), .q(p[6]));
+vmsu8_dff FP7 (.d(d_p[7]), .clk(clk_net), .rst(rst_sync_reg), .q(p[7]));
+vmsu8_dff FP8 (.d(d_p[8]), .clk(clk_net), .rst(rst_sync_reg), .q(p[8]));
+vmsu8_dff FP9 (.d(d_p[9]), .clk(clk_net), .rst(rst_sync_reg), .q(p[9]));
+vmsu8_dff FP10 (.d(d_p[10]), .clk(clk_net), .rst(rst_sync_reg), .q(p[10]));
+vmsu8_dff FP11 (.d(d_p[11]), .clk(clk_net), .rst(rst_sync_reg), .q(p[11]));
+vmsu8_dff FP12 (.d(d_p[12]), .clk(clk_net), .rst(rst_sync_reg), .q(p[12]));
+vmsu8_dff FP13 (.d(d_p[13]), .clk(clk_net), .rst(rst_sync_reg), .q(p[13]));
+vmsu8_dff FP14 (.d(d_p[14]), .clk(clk_net), .rst(rst_sync_reg), .q(p[14]));
+vmsu8_dff FP15 (.d(d_p[15]), .clk(clk_net), .rst(rst_sync_reg), .q(p[15]));
 
 endmodule
 
