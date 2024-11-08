@@ -60,97 +60,90 @@ void main()
 
 	reg_mprj_io_6  = GPIO_MODE_MGMT_STD_OUTPUT;
 
-	reg_uart_enable = 1;
-
 	// Now, apply the configuration
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
-	
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
 	// Flag start of the test 
-	reg_mprj_datal	=	reg_la0_data = 0xAB300000;
+	// Execute in Single Encryption Mode
+	// reg_mprj_datal	=	reg_la0_data = 0xFC300000;
+	
+	// Execute in Multiple Encryption Mode
+	reg_mprj_datal	=	reg_la0_data = 0xFD300000;
 
 	for (uint32_t i = 0; i< 2; i++){
 		reg_la0_data = 0xAB30FFFF;
 		// Configure LA probes 2, 1, and 0 [95:0] as outputs from the cpu 
 		// Configure LA probes 3 [127:96] as inputs to the cpu
-		reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-		reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-		reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-		reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
+		reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0] for la_data_in
+		reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32] for la_data_out
+		
 		// Write Process from Processor to BEC core (la3[31:30] = "01")
 		reg_mprj_datal = 0xAB410000 ^ (i << 8);
 		write_data(i);
+		reg_la0_data = 0xEF410000;
 		// break;
-		
-		while (reg_la3_data_in != 0x9C000000) {
-			// Hold BEC wait until jump to `Proc` state
-			reg_la2_data	= 	0x00000000;
-			reg_la1_data	=	0x00000000;
-			reg_la0_data 	=	0xAB410000;
-		}
-
-		while (reg_la3_data_in  == 0x9C000000) {
+		while (reg_la1_data_in  != 0xBC000000) {
 			// Inform processer being processing
 			reg_mprj_datal = 0xAB420000 ^ (i << 8);
-			// Configure LA probes 0 [31:0] as inputs to the cpu 
-			// Configure LA probes 3, 2, and 1 [127:32] as output from the cpu
-			reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;  // [31:0]
-			reg_la1_oenb = reg_la1_iena = 0x00000000;  // [63:32]
-			reg_la2_oenb = reg_la2_iena = 0x00000000;  // [95:64]
-			reg_la3_oenb = reg_la3_iena = 0x00000000;  // [127:96]
-			reg_la0_data =0xAB40FFFF; // Processor ready for read results from BEC 
-
 		}
-		reg_mprj_datal = 0xAB510000 ^ (i << 8);
+		reg_mprj_datal = 0xAB500000 ^ (i << 8);
 		
-		// reg_wout_0, reg_wout_1, reg_wout_2, reg_wout_3, reg_wout_4, reg_wout_5, reg_zout_0, reg_zout_1, reg_zout_2, reg_zout_3, reg_zout_4, reg_zout_5 = read_data();
-		
-		while ((reg_la3_data_in & 0xC0000000) == 0xC0000000) {
-			if ((reg_la3_data_in & 0xFF000000) == 0xC8000000) {
-				reg_wout_3 = reg_la3_data_in & 0x0003FFFF;			// Take 81 bits
-				reg_wout_4 = reg_la2_data_in;
-				reg_wout_5 = reg_la1_data_in;
-
-				reg_la0_data = 0xAB080000;
-			} else if ((reg_la3_data_in & 0xFF000000) == 0xCC000000) {
-				reg_zout_0 = reg_la3_data_in & 0x0001FFFF;
-				reg_zout_1 = reg_la2_data_in;
-				reg_zout_2 = reg_la1_data_in;
-
-				reg_la0_data = 0xAB0C0000;
-			} else if ((reg_la3_data_in & 0xFF000000) == 0xD0000000) {
-				reg_zout_3 = reg_la3_data_in & 0x0003FFFF;			// Take 81 bits
-				reg_zout_4 = reg_la2_data_in;
-				reg_zout_5 = reg_la1_data_in;
-
-				reg_la0_data = 0xAB100000;
+		while (1) {
+			if ((reg_la1_data_in & 0xF0000000) == 0x20000000){
+				reg_wout_1 = reg_la1_data_in & 0x0FFFFFFF;
+				reg_la0_data = 0x00020000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x30000000) {
+				reg_wout_2 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits
+				reg_la0_data = 0x00030000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x40000000) {
+				reg_wout_3 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits_la0_data = 0xAB040000;
+				reg_la0_data = 0x00040000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x50000000) {
+				reg_wout_4 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits
+				reg_la0_data = 0x00050000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x60000000) {
+				reg_wout_5 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits
+				reg_la0_data = 0x00060000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x70000000) {
+				reg_zout_0 = reg_la1_data_in & 0x0FFFFFFF;			// Take 29 bits
+				reg_la0_data = 0x00070000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x80000000){
+				reg_zout_1 = reg_la1_data_in & 0x0FFFFFFF;
+				reg_la0_data = 0x00080000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x90000000) {
+				reg_zout_2 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits
+				reg_la0_data = 0x00090000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0xA0000000) {
+				reg_zout_3 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits_la0_data = 0xAB040000;
+				reg_la0_data = 0x000A0000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0xC0000000) {
+				reg_zout_4 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits
+				reg_la0_data = 0x000C0000;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0xD0000000) {
+				reg_zout_5 = reg_la1_data_in & 0x0FFFFFFF;			// Take 81 bits
+				reg_la0_data = 0xAB500000;
 				break;
+			} else if ((reg_la1_data_in & 0xF0000000) == 0x10000000) {
+				reg_wout_0 = reg_la1_data_in & 0x0FFFFFFF;			// Take 29 bits
+				reg_la0_data = 0x00010000;
 			} else {
-				reg_wout_0 = reg_la3_data_in & 0x0001FFFF;
-				reg_wout_1 = reg_la2_data_in;
-				reg_wout_2 = reg_la1_data_in;
-				
-				reg_la0_data = 0xAB040000;
-			}
+				reg_la0_data = 0x00000000;
+			} 
 		}
 
 		while (1){
-			reg_la0_data = 0xAB500000;
 			if ((reg_wout_0 == wA_array[i][0]) & (reg_wout_1 == wA_array[i][1]) & (reg_wout_2 == wA_array[i][2]) & (reg_wout_3 == wA_array[i][3]) & (reg_wout_4 == wA_array[i][4]) & (reg_wout_5 == wA_array[i][5])){
 				reg_mprj_datal = 0xAB430000 ^ (i << 8);
-				reg_la0_data = reg_wout_0;
 			} else {
 				reg_mprj_datal = 0xAB440000 ^ (i << 8);
-				reg_la0_data = reg_wout_0;
 			}
 			break;
 		}
-		while (reg_la3_data_in ^ 0xFF000000 == 0xC400000) {
+		while (reg_la1_data_in ^ 0xFFF00000 == 0xAD400000) {
 			reg_la0_data = 0xAB500000;
-			// if (reg_la3_data_in == 0x40000000)
-			break;
 		}
-		// reg_mprj_datal = 0xAB510000;
+		// reg_mprj_datal = 0xAB510000 ^ (i << 8);
 	}
 	reg_mprj_datal = 0xABFF0000;
 }
