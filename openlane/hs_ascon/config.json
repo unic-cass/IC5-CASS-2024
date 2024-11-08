@@ -1,0 +1,63 @@
+{
+    "DESIGN_NAME": "ascon_wrapper",
+    "DESIGN_IS_CORE": 0,
+    "VERILOG_FILES": [
+        "dir::../../verilog/rtl/defines.v",
+        "dir::../../verilog/rtl/hs_ascon/ascon_wrapper.v",
+        "dir::../../verilog/rtl/hs_ascon/ascon.v",
+        "dir::../../verilog/rtl/hs_ascon/ascon_core.v",
+        "dir::../../verilog/rtl/hs_ascon/roundcounter.v",
+        "dir::../../verilog/rtl/hs_ascon/permutation/ascon_permutation.v",
+        "dir::../../verilog/rtl/hs_ascon/permutation/linear_layer.v",
+        "dir::../../verilog/rtl/hs_ascon/permutation/roundconstant.v",
+        "dir::../../verilog/rtl/hs_ascon/permutation/substitution_layer.v"
+    ],
+    "CLOCK_PERIOD": 25,
+    "CLOCK_PORT": "clk",
+    "CLOCK_NET": "ascon_wrapper.clk",
+    "IO_SYNC": 1,
+    "FP_SIZING": "absolute",
+    "DIE_AREA": "0 0 600 600",
+    "PL_TARGET_DENSITY": 0.46,
+    "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+    "MAX_TRANSITION_CONSTRAINT": 1.5,
+    "MAX_FANOUT_CONSTRAINT": 30,
+    "PL_RESIZER_SETUP_SLACK_MARGIN": 0.4,
+    "GLB_RESIZER_SETUP_SLACK_MARGIN": 0.2,
+    "GLB_RESIZER_HOLD_SLACK_MARGIN": 0.2,
+    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.4,
+    "SYNTH_STRATEGY": "AREA 3",
+    "MAGIC_DEF_LABELS": 0,
+    "SYNTH_BUFFERING": 1,
+    "DECAP_CELL": "sky130_fd_sc_hd__decap_3",
+    "FILL_CELL": "sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1",
+    "VDD_NETS": [
+        "vccd1"
+    ],
+    "GND_NETS": [
+        "vssd1"
+    ],
+    "IO_SYNC": 0,
+    "BASE_SDC_FILE": "dir::base_hs_ascon.sdc",
+    "RUN_CVC": 1,
+    "pdk::sky130*": {
+        "FP_CORE_UTIL": 70,
+        "RT_MAX_LAYER": "met5",
+        "scl::sky130_fd_sc_hd": {
+            "CLOCK_PERIOD": 10
+        },
+        "scl::sky130_fd_sc_hdll": {
+            "CLOCK_PERIOD": 10
+        },
+        "scl::sky130_fd_sc_hs": {
+            "CLOCK_PERIOD": 8
+        },
+        "scl::sky130_fd_sc_ls": {
+            "CLOCK_PERIOD": 10,
+            "SYNTH_MAX_FANOUT": 5
+        },
+        "scl::sky130_fd_sc_ms": {
+            "CLOCK_PERIOD": 10
+        }
+    }
+}

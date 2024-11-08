@@ -158,6 +158,19 @@ module user_project_wrapper #(
 		.done(w_slvDone)
 	);
 
+   ascon_wrapper ascon_wrapper (
+`ifdef USE_POWER_PINS
+    .vccd1(vccd1),      // User area 1 1.8V supply
+    .vssd1(vssd1),      // User area 1 digital ground
+`endif
+// clock is mapped to io_in[10]
+// reset is mapped to io_in[9]
+    .clk(io_in[16]),
+    .rst(io_in[15]),
+    .io_in(io_in[14:9]),
+    .io_out(io_out[19:17]),
+    .io_oeb({io_oeb[16:9], io_oeb[19:17]}));
+
 endmodule	// user_project_wrapper
 
 `default_nettype wire

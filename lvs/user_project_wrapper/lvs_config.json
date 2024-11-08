@@ -20,12 +20,12 @@
 	],
 	"LVS_SPICE_FILES": [
 		"$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice",
-		"$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice",
-        "$UPRJ_ROOT/spi/lvs/lovers_controller.spice",
-        "$UPRJ_ROOT/spi/lvs/lovers_bec.spice"
+		"$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
 	],
 	"LVS_VERILOG_FILES": [
-		"$UPRJ_ROOT/verilog/gl/lovers_bec.v",
+		"$UPRJ_ROOT/verilog/gl/vmsu_8bit.v",
+		"$UPRJ_ROOT/verilog/gl/ascon_wrapper.v",
+		"$UPRJ_ROOT/verilog/gl/bec.v",
 		"$UPRJ_ROOT/verilog/gl/lovers_controller.v",
 		"$UPRJ_ROOT/verilog/gl/$TOP_SOURCE.v"
 	],
