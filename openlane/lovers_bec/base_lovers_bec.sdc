@@ -75,15 +75,12 @@ set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {enable}]
 set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {load_data}]
 set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {load_status[*]}]
 set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {data_in[*]}]
-set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {trigLoad}]
 set_input_delay -max 1.87 -clock [get_clocks {clk}] [get_ports {ki}]
-
 
 set_input_delay -min 0.18 -clock [get_clocks {clk}] [get_ports {enable}]
 set_input_delay -min 0.18 -clock [get_clocks {clk}] [get_ports {load_data}]
 set_input_delay -min 0.18 -clock [get_clocks {clk}] [get_ports {load_status[*]}]
 set_input_delay -min 0.18 -clock [get_clocks {clk}] [get_ports {data_in[*]}]
-set_input_delay -min 0.18 -clock [get_clocks {clk}] [get_ports {trigLoad}]
 set_input_delay -min 0.18 -clock [get_clocks {clk}] [get_ports {ki}]
 
 # Input Transition
@@ -91,15 +88,12 @@ set_input_transition -max 0.14  [get_ports {enable}]
 set_input_transition -max 0.14  [get_ports {load_data}]
 set_input_transition -max 0.14  [get_ports {load_status[*]}]
 set_input_transition -max 0.14  [get_ports {data_in[*]}]
-set_input_transition -max 0.14  [get_ports {trigLoad}]
 set_input_transition -max 0.14  [get_ports {ki}]
-
 
 set_input_transition -min 0.05  [get_ports {enable}]
 set_input_transition -min 0.06  [get_ports {load_data}]
 set_input_transition -min 0.07  [get_ports {load_status[*]}]
 set_input_transition -min 0.07  [get_ports {data_in[*]}]
-set_input_transition -min 0.07  [get_ports {trigLoad}]
 set_input_transition -min 0.09  [get_ports {ki}]
 
 # Output delays

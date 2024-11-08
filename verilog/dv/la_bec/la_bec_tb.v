@@ -142,7 +142,7 @@ module la_bec_tb;
 		$dumpvars(0, la_bec_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (1500) begin
+		repeat (2000) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -162,7 +162,11 @@ module la_bec_tb;
 	end
 
 	always @(*) begin
-		if (checkbits == 16'hAB30) begin
+		if  (checkbits == 16'hFD30) begin
+			$display("Executing BEC in Multiple Encryption Mode!");
+		end else if (checkbits == 16'hFC30) begin
+			$display("Executing BEC in Single Encryption Mode!");
+		end else if (checkbits == 16'hAB30) begin
 			$display("LA BEC: #%h Started", id_test);
 		end else if(checkbits == 16'hAB41) begin
 			$display("LA BEC: Processor writes data to BEC");

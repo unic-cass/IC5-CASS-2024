@@ -1,19 +1,5 @@
-// // SPDX-FileCopyrightText: 2020 Efabless Corporation
-// //
-// // Licensed under the Apache License, Version 2.0 (the "License");
-// // you may not use this file except in compliance with the License.
-// // You may obtain a copy of the License at
-// //
-// //      http://www.apache.org/licenses/LICENSE-2.0
-// //
-// // Unless required by applicable law or agreed to in writing, software
-// // distributed under the License is distributed on an "AS IS" BASIS,
-// // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// // See the License for the specific language governing permissions and
-// // limitations under the License.
-// // SPDX-License-Identifier: Apache-2.0
 
-module lovers_bec (
+module bec (
 `ifdef USE_POWER_PINS
 	inout vccd2,	// User area 2 1.8v supply
 	inout vssd2,	// User area 2 digital ground
@@ -23,15 +9,14 @@ module lovers_bec (
 	input rst, 
 	input enable,
 	input load_data,
-	input [2:0] load_status,
-	input [162:0] data_in, 
-	input trigLoad,
+	input [5:0] load_status,
+	input [31:0] data_in, 
 	input ki,
 
 	output wire next_key,
 	output wire [3:0]  becStatus,
 	output done,
-	output [162:0] data_out
+	output [31:0] data_out
 );
 	// FSM Definition
 	reg [3:0] current_state, next_state;
@@ -48,13 +33,11 @@ module lovers_bec (
 	reg downloadSig, uploadSig, procSig, idleSig;
 	
 	assign becStatus = {idleSig, downloadSig, procSig, uploadSig};
-	assign data_out = ((uploadSig == 1'b1) & (load_status == 3'b000)) ? regA : ((uploadSig == 1'b1) & (load_status == 3'b001)) ? regB: 0;
+	assign data_out = ((load_status[5:3] == 3'b000)) ? regA [31:0] : ((load_status[5:3] == 3'b001)) ? regB[31:0]: 0;
 	assign next_key = done_loop;
 
 	assign done_loop = (current_state == st7)? 1'b1 : 1'b0;
 	assign done = (current_state == uload) ? 1'b1 : 1'b0;
-
-	// assign configuration = ((current_state == st3) ^ (current_state == st6)) ? 1'b1 : 1'b0;
 
 	acb u1(
 		.clk(clk),
@@ -67,7 +50,7 @@ module lovers_bec (
 		.done(next_round)
 	);
 
-	always @(posedge clk or posedge rst) begin
+	always @(posedge clk) begin
 		if (rst) begin
 			current_state <= idle;
 			idleSig <= 1'b0;
@@ -160,16 +143,13 @@ module lovers_bec (
 					else
 						next_state = st0;
 			uload: begin
-				if (load_status == 3'b001)
-					next_state = idle;
-				else
-					next_state = uload;
+				next_state = idle;
 			end 
 			default: next_state = idle;
 		endcase
 	end
 
-	always @(posedge clk or posedge rst) begin
+	always @(posedge clk) begin
 		if (rst) begin
 			regA <= 0;
 			regB <= 0;
@@ -185,33 +165,107 @@ module lovers_bec (
 			reg_key_iter <= 0;
             local_enable <= 1'b0;
 		end else begin
-			if (downloadSig & trigLoad) begin
+			if (downloadSig) begin
 				if (ki) begin
-					case (load_status)
-						3'b000:  	inACB_1 <= data_in;
-						3'b001: 	regB 	<= data_in;
-						3'b010:		regC	<= data_in;
-						3'b011:		begin
-										regD 	<= data_in;
-										inACB_2 <= data_in;
-									end
-						3'b101:		reg_d	<= data_in;
-						3'b100:		reg_inv_w0 <= data_in;
-						default: 	reg_inv_w0 <= data_in;
-					endcase
+					if (load_status [5:3] == 3'b100) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							inACB_1 <= {3'b000, data_in, inACB_1[159:32]};
+						end else begin
+							inACB_1 <= {data_in[2:0], inACB_1[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b101) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							regB <= {3'b000, data_in, regB[159:32]};
+						end else begin
+							regB <= {data_in[2:0], regB[159:0]};
+						end
+					end
+					
+					if (load_status [5:3] == 3'b010) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							regC <= {3'b000, data_in, regC[159:32]};
+						end else begin
+							regC <= {data_in[2:0], regC[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b011) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							regD <= {3'b000, data_in, regD[159:32]};
+							inACB_2 <= {3'b000, data_in, inACB_2[159:32]};
+						end else begin
+							regD <= {data_in[2:0], regD[159:0]};
+							inACB_2 <= {data_in[2:0], inACB_2[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b001) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							reg_d <= {3'b000, data_in, reg_d[159:32]};
+						end else begin
+							reg_d <= {data_in[2:0], reg_d[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b000) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							reg_inv_w0 <= {3'b000, data_in, reg_inv_w0[159:32]};
+						end else begin
+							reg_inv_w0 <= {data_in[2:0], reg_inv_w0[159:0]};
+						end
+					end
 				end else begin
-					case (load_status)
-						3'b000:  	regA	<= data_in;
-						3'b001: 	begin
-										regB 	<= data_in;
-										inACB_2 <= data_in;
-									end
-						3'b010:		inACB_1	<= data_in;
-						3'b011:		regD 	<= data_in;
-						3'b101:		reg_d	<= data_in;
-						3'b100:		reg_inv_w0 <= data_in;
-						default: 	reg_inv_w0 <= data_in;
-					endcase
+					if (load_status [5:3] == 3'b100) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							regA <= {3'b000, data_in, regA[159:32]};
+						end else begin
+							regA <= {data_in[2:0], regA[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b101) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							regB 		<= {3'b000, data_in, regB[159:32]};
+							inACB_2 	<= {3'b000, data_in, inACB_2[159:32]};
+						end else begin
+							regB 		<= {data_in[2:0], regB[159:0]};
+							inACB_2 	<= {data_in[2:0], inACB_2[159:0]};
+						end
+					end
+					
+					if (load_status [5:3] == 3'b010) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							inACB_1 <= {3'b000, data_in, inACB_1[159:32]};
+						end else begin
+							inACB_1 <= {data_in[2:0], inACB_1[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b011) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							regD <= {3'b000, data_in, regD[159:32]};
+						end else begin
+							regD <= {data_in[2:0], regD[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b001) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							reg_d <= {3'b000, data_in, reg_d[159:32]};
+						end else begin
+							reg_d <= {data_in[2:0], reg_d[159:0]};
+						end
+					end
+
+					if (load_status [5:3] == 3'b000) begin
+						if ((load_status[2:1] != 2'b00) & (load_status[2:0] != 3'b111)) begin
+							reg_inv_w0 <= {3'b000, data_in, reg_inv_w0[159:32]};
+						end else begin
+							reg_inv_w0 <= {data_in[2:0], reg_inv_w0[159:0]};
+						end
+					end
 				end
 			end else if (procSig) begin
 				if (next_round) begin
@@ -290,6 +344,13 @@ module lovers_bec (
 				regD <= 0;
 			end
 			
+			if (load_data) begin
+				if (load_status[5:3] == 3'b000) begin
+					regA <= {32'h00000000, regA[162:32] };
+				end else if (load_status[5:3] == 3'b001) begin
+					regB <= {32'h00000000, regB[162:32]};
+				end
+			end
 
 			if (local_enable) begin
 				case (current_state)

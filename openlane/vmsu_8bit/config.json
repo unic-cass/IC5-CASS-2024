@@ -3,7 +3,7 @@
     "DESIGN_IS_CORE": 0,
     "VERILOG_FILES": [
         "dir::../../verilog/rtl/defines.v",
-        "dir::../../verilog/rtl/vmsu_8b/vmsu_8bit_top.v"
+        "dir::../../verilog/rtl/vmsu_8bit/vmsu_8bit_top.v"
     ],
     "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "clk",
