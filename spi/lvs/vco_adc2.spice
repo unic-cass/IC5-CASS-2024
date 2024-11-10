@@ -1,0 +1,192 @@
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/vco_adc2.sch
+.subckt vco_adc2 vbias_12 vbias_34 analog_in enable_in clk quantizer_out vdda1 vssa1
+*.PININFO vdda1:I quantizer_out:O vssa1:I enable_in:I clk:I vbias_34:I analog_in:I vbias_12:I
+x1 analog_in enable_in p_vco vdda1 vssa1 ALib_VCO
+x2 vbias_12 vbias_34 net1 D1 enable_in vdda1 vssa1 ALib_DCO
+x3 D2 clk quantizer_out FeedBack vdda1 vssa1 DLib_Quantizer
+x4 p_vco FeedBack enable_in D1 vdda1 vssa1 DLib_UpDownCounter
+x6 net1 FeedBack enable_in D2 vdda1 vssa1 DLib_UpDownCounter
+.ends
+
+* expanding   symbol:  ALib_VCO.sym # of pins=5
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/ALib_VCO.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/ALib_VCO.sch
+.subckt ALib_VCO Anlg_in ENB p[4] VDDA GND
+*.PININFO Anlg_in:I VDDA:I ENB:I p[4]:O GND:I
+x1 VDDA ENB GND GND VDDA VDDA pn[4] sky130_fd_sc_hd__einvp_1
+R1 Vctrl Anlg_in sky130_fd_pr__res_generic_po W=0.482 L=2 m=1
+R2 GND Vctrl sky130_fd_pr__res_generic_po W=0.482 L=2 m=1
+Xro_1 pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p[4] Vctrl VDDA GND x5s_cc_osc
+.ends
+
+
+* expanding   symbol:  ALib_DCO.sym # of pins=7
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/ALib_DCO.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/ALib_DCO.sch
+.subckt ALib_DCO Vbs_12 Vbs_34 pha_DCO Dctrl ENB VDDA GND
+*.PININFO Dctrl:I Vbs_12:I Vbs_34:I pha_DCO:O ENB:I VDDA:I GND:I
+x1 VDDA ENB GND GND VDDA VDDA pn[4] sky130_fd_sc_hd__einvp_1
+x2 p_osc GND GND VDDA VDDA pha_ro sky130_fd_sc_hd__buf_2
+x3 Vbs_12 Vbs_12 Vbs_34 Vbs_34 Dctrl Isup VDDA GND ALib_IDAC
+Xdiv2 pha_ro ro_div2 VDDA GND DLib_freqDiv2
+Xdiv2_1 ro_div2 pha_DCO VDDA GND DLib_freqDiv2
+x5 pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p_osc Isup GND x5s_cc_osc_dco
+.ends
+
+
+* expanding   symbol:  DLib_Quantizer.sym # of pins=6
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/DLib_Quantizer.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/DLib_Quantizer.sch
+.subckt DLib_Quantizer D CLK Dout FBack VDDA GND
+*.PININFO CLK:I D:I Dout:O FBack:O VDDA:I GND:I
+Xdly_1 CLK GND GND VDDA VDDA DL1 sky130_fd_sc_hd__dlygate4sd3_1
+x2 CLK net1 GND GND VDDA VDDA Dout sky130_fd_sc_hd__dfxtp_1
+x3 D GND GND VDDA VDDA net1 sky130_fd_sc_hd__buf_2
+x4 CLK_dly Dout GND GND VDDA VDDA FBack_inv sky130_fd_sc_hd__nand2_1
+x5 FBack_inv GND GND VDDA VDDA FBack sky130_fd_sc_hd__inv_2
+Xdly_2 DL1 GND GND VDDA VDDA DL2 sky130_fd_sc_hd__dlygate4sd3_1
+Xdly_3 DL2 GND GND VDDA VDDA DL3 sky130_fd_sc_hd__dlygate4sd3_1
+Xdly_4 DL3 GND GND VDDA VDDA DL4 sky130_fd_sc_hd__dlygate4sd3_1
+Xdly_5 DL4 GND GND VDDA VDDA DL5 sky130_fd_sc_hd__dlygate4sd3_1
+Xdly_6 DL5 GND GND VDDA VDDA CLK_dly sky130_fd_sc_hd__dlygate4sd3_1
+.ends
+
+
+* expanding   symbol:  DLib_UpDownCounter.sym # of pins=6
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/DLib_UpDownCounter.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/DLib_UpDownCounter.sch
+.subckt DLib_UpDownCounter UP DOWN setB Dout_buf VDDA GND
+*.PININFO DOWN:I Dout_buf:O GND:I setB:I UP:I VDDA:I
+X_inv_0 setB GND GND VDDA VDDA setBi sky130_fd_sc_hd__inv_2
+X_upFF UP_buf Q2N setBi GND GND VDDA VDDA Q1 sky130_fd_sc_hd__dfstp_1
+X_dwFF DWN_buf Q1_buf setBi GND GND VDDA VDDA Q2 sky130_fd_sc_hd__dfstp_1
+x5 Q1 Q2 GND GND VDDA VDDA Dout sky130_fd_sc_hd__xor2_1
+X_buf_3 UP GND GND VDDA VDDA UP_buf sky130_fd_sc_hd__buf_2
+X_buf_4 Q1 GND GND VDDA VDDA Q1_buf sky130_fd_sc_hd__buf_2
+X_buf_5 Dout GND GND VDDA VDDA Dout_buf sky130_fd_sc_hd__buf_2
+X_buf_6 DOWN GND GND VDDA VDDA DWN_buf sky130_fd_sc_hd__buf_2
+X_inv_1 Q2 GND GND VDDA VDDA Q2N sky130_fd_sc_hd__inv_2
+.ends
+
+
+* expanding   symbol:  x5s_cc_osc.sym # of pins=13
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc.sch
+.subckt x5s_cc_osc pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p[4] VGND VDDA GND
+*.PININFO VDDA:B VGND:B pn[0]:O p[0]:B pn[1]:O p[1]:O p[2]:O p[3]:O p[4]:O pn[2]:O pn[3]:O pn[4]:O GND:B
+Xi_1 p[4] pn[4] p[0] pn[0] VGND VDDA GND cc_inv
+Xi_2 p[0] pn[0] p[1] pn[1] VGND VDDA GND cc_inv
+Xi_3 p[1] pn[1] p[2] pn[2] VGND VDDA GND cc_inv
+Xi_4 p[2] pn[2] p[3] pn[3] VGND VDDA GND cc_inv
+Xi_6 p[3] pn[3] p[4] pn[4] VGND VDDA GND cc_inv
+.ends
+
+
+* expanding   symbol:  ../lib/ALib_IDAC.sym # of pins=8
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/ALib_IDAC.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/ALib_IDAC.sch
+.subckt ALib_IDAC Vbs1 Vbs2 Vbs3 Vbs4 Dctrl Isup VDDA GND
+*.PININFO Vbs3:I Vbs4:I Vbs1:I Vbs2:I Isup:O Dctrl:I GND:I VDDA:I
+x1 open GND GND VDDA VDDA lock sky130_fd_sc_hd__inv_2
+XM1 net1 Vbs1 VDDA VDDA sky130_fd_pr__pfet_01v8_hvt L=0.5 W=1.8 nf=1 m=1
+XM2 Isup Vbs2 net1 net1 sky130_fd_pr__pfet_01v8_hvt L=0.5 W=1.8 nf=1 m=1
+x2 Dctrl GND GND VDDA VDDA open sky130_fd_sc_hd__buf_2
+XM3 net2 Vbs3 VDDA VDDA sky130_fd_pr__pfet_01v8_hvt L=0.5 W=5.4 nf=3 m=1
+XM4 add_pwr Vbs4 net2 net2 sky130_fd_pr__pfet_01v8_hvt L=0.5 W=5.4 nf=3 m=1
+XM5 Isup lock add_pwr add_pwr sky130_fd_pr__pfet_01v8_hvt L=0.5 W=8 nf=2 m=1
+XM6 add_pwr open Isup GND sky130_fd_pr__nfet_01v8 L=0.5 W=4 nf=2 m=1
+XM7 input_R open add_pwr add_pwr sky130_fd_pr__pfet_01v8_hvt L=0.5 W=8 nf=2 m=1
+XM8 add_pwr lock input_R GND sky130_fd_pr__nfet_01v8 L=0.5 W=4 nf=2 m=1
+XR2 GND input_R GND sky130_fd_pr__res_xhigh_po_0p35 L=8.4 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  ../lib/DLib_freqDiv2.sym # of pins=4
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/DLib_freqDiv2.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/DLib_freqDiv2.sch
+.subckt DLib_freqDiv2 clk clkDiv2 VDDA GND
+*.PININFO clkDiv2:O clk:I VDDA:I GND:I
+x1 clk D GND GND VDDA VDDA clkDiv2 Q_N sky130_fd_sc_hd__dfxbp_2
+x2 clkinv Q_N_buf GND GND VDDA VDDA D sky130_fd_sc_hd__dfxtp_1
+x3 clk GND GND VDDA VDDA clkinv sky130_fd_sc_hd__inv_4
+x4 Q_N GND GND VDDA VDDA Q_N_buf sky130_fd_sc_hd__buf_4
+.ends
+
+
+* expanding   symbol:  x5s_cc_osc_dco.sym # of pins=12
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc_dco.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc_dco.sch
+.subckt x5s_cc_osc_dco pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p[4] VDDA VGND
+*.PININFO VDDA:B VGND:B pn[0]:O p[0]:B pn[1]:O p[1]:O p[2]:O p[3]:O p[4]:O pn[2]:O pn[3]:O pn[4]:O
+x1 p[4] pn[4] p[0] pn[0] VDDA VGND cc_inv_dco
+x2 p[0] pn[0] p[1] pn[1] VDDA VGND cc_inv_dco
+x3 p[1] pn[1] p[2] pn[2] VDDA VGND cc_inv_dco
+x4 p[2] pn[2] p[3] pn[3] VDDA VGND cc_inv_dco
+x5 p[3] pn[3] p[4] pn[4] VDDA VGND cc_inv_dco
+.ends
+
+
+* expanding   symbol:  cc_inv.sym # of pins=7
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/cc_inv.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/cc_inv.sch
+.subckt cc_inv inp inn outp outn VGND VDDA GND
+*.PININFO outp:O inn:I VGND:B outn:O inp:I VDDA:B GND:B
+Xi_1 inp outp VGND VDDA GND main_inv
+Xi_2 inn outn VGND VDDA GND main_inv
+Xi_3 outp outn VGND VDDA GND aux_inv
+Xi_4 outn outp VGND VDDA GND aux_inv
+.ends
+
+
+* expanding   symbol:  ../lib/cc_inv_dco.sym # of pins=6
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/cc_inv_dco.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/cc_inv_dco.sch
+.subckt cc_inv_dco inp inn outp outn VDDA VGND
+*.PININFO outp:O inn:I VGND:B outn:O inp:I VDDA:B
+x1 inp outp VDDA VGND main_inv_dco
+x2 inn outn VDDA VGND main_inv_dco
+x3 outp outn VDDA VGND aux_inv_dco
+x4 outn outp VDDA VGND aux_inv_dco
+.ends
+
+
+* expanding   symbol:  main_inv.sym # of pins=5
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/main_inv.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/main_inv.sch
+.subckt main_inv A Y VGND VDDA GND
+*.PININFO VDDA:B VGND:B A:I Y:O GND:B
+XM2 Y A VGND GND sky130_fd_pr__nfet_01v8 L=3.65 W=8 nf=2 m=1
+XM1 Y A VDDA VDDA sky130_fd_pr__pfet_01v8 L=3.65 W=10 nf=2 m=1
+.ends
+
+
+* expanding   symbol:  aux_inv.sym # of pins=5
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/aux_inv.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/aux_inv.sch
+.subckt aux_inv A Y VGND VDDA GND
+*.PININFO VDDA:B VGND:B A:I Y:O GND:B
+XM3 Y A VGND GND sky130_fd_pr__nfet_01v8 L=3.65 W=4 nf=1 m=1
+XM2 Y A VDDA VDDA sky130_fd_pr__pfet_01v8 L=3.65 W=5 nf=1 m=1
+.ends
+
+
+* expanding   symbol:  ../lib/main_inv_dco.sym # of pins=4
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/main_inv_dco.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/main_inv_dco.sch
+.subckt main_inv_dco A Y VDDA VGND
+*.PININFO VDDA:B VGND:B A:I Y:O
+XM3 Y A VGND VGND sky130_fd_pr__nfet_01v8 L=1.2 W=4 nf=2 m=1
+XM1 Y A VDDA VDDA sky130_fd_pr__pfet_01v8 L=1.2 W=6 nf=2 m=1
+.ends
+
+
+* expanding   symbol:  ../lib/aux_inv_dco.sym # of pins=4
+** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/aux_inv_dco.sym
+** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/aux_inv_dco.sch
+.subckt aux_inv_dco A Y VDDA VGND
+*.PININFO VDDA:B VGND:B A:I Y:O
+XM3 Y A VGND VGND sky130_fd_pr__nfet_01v8 L=1.2 W=2 nf=1 m=1
+XM1 Y A VDDA VDDA sky130_fd_pr__pfet_01v8 L=1.2 W=3 nf=1 m=1
+.ends
+
+.end

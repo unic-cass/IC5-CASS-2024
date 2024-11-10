@@ -1,0 +1,87 @@
+magic
+tech sky130A
+timestamp 1730447269
+<< locali >>
+rect 2980 1375 3090 1415
+rect 5980 1375 6090 1415
+rect 8880 1375 10020 1415
+rect 2980 150 3090 190
+rect 3095 -690 3145 170
+rect 5980 150 6090 190
+rect 5910 -725 6020 -685
+rect 8860 -695 8910 180
+rect 9920 -1910 10020 1375
+rect 5910 -1950 6020 -1910
+rect 8825 -1950 10020 -1910
+<< metal1 >>
+rect -300 1075 0 1125
+rect 2980 1075 3090 1125
+rect 5980 1075 6090 1125
+rect 9000 1075 9490 1125
+rect -300 -1610 -250 1075
+rect -150 440 0 490
+rect 2980 440 3090 490
+rect 5980 440 6090 490
+rect 9000 440 9200 490
+rect -150 -975 -100 440
+rect 2025 0 3050 50
+rect 3900 -540 3950 25
+rect 5035 0 6045 50
+rect 5930 -585 6955 -535
+rect 8050 -570 8100 50
+rect 9100 -975 9200 440
+rect -150 -1025 3000 -975
+rect 5910 -1025 6020 -975
+rect 9000 -1025 9200 -975
+rect 9390 -1610 9490 1075
+rect -300 -1660 3000 -1610
+rect 5910 -1660 6020 -1610
+rect 9000 -1660 9490 -1610
+use cc_inv  cc_inv_0
+timestamp 1730447143
+transform 1 0 130 0 1 150
+box -130 -150 2870 1265
+use cc_inv  cc_inv_1
+timestamp 1730447143
+transform 1 0 3130 0 1 150
+box -130 -150 2870 1265
+use cc_inv  cc_inv_2
+timestamp 1730447143
+transform 1 0 6130 0 1 150
+box -130 -150 2870 1265
+use cc_inv  cc_inv_3
+timestamp 1730447143
+transform -1 0 5870 0 -1 -685
+box -130 -150 2870 1265
+use cc_inv  cc_inv_4
+timestamp 1730447143
+transform -1 0 8870 0 -1 -685
+box -130 -150 2870 1265
+<< labels >>
+rlabel metal1 3030 490 3030 490 1 pn[0]
+port 1 n
+rlabel metal1 6030 490 6030 490 1 pn[1]
+port 2 n
+rlabel metal1 9045 490 9045 490 1 pn[2]
+port 3 n
+rlabel metal1 5960 -975 5960 -975 1 pn[3]
+port 4 n
+rlabel metal1 2955 -975 2955 -975 1 pn[4]
+port 5 n
+rlabel metal1 3015 1125 3015 1125 1 p[0]
+port 6 n
+rlabel metal1 6030 1125 6030 1125 1 p[1]
+port 7 n
+rlabel metal1 9040 1125 9040 1125 1 p[2]
+port 8 n
+rlabel metal1 5955 -1610 5955 -1610 1 p[3]
+port 9 n
+rlabel metal1 2920 -1610 2920 -1610 1 p[4]
+port 10 n
+rlabel locali 3145 -185 3145 -185 3 VGND
+port 11 e
+rlabel locali 9985 1415 9985 1415 1 VDDA
+port 12 n
+rlabel metal1 3950 -330 3950 -330 3 GND
+port 13 e
+<< end >>

@@ -10,7 +10,9 @@
     "FP_PDN_MACRO_HOOKS": ["vmsu_8bit_top vccd1 vssd1 vccd1 vssd1,",
 			   "lovers_controller vccd1 vssd1 vccd1 vssd1,",
 			   "lovers_bec vccd2 vssd2 vccd2 vssd2,",
-			   "ascon_wrapper vccd1 vssd1 vccd1 vssd1"
+			   "ascon_wrapper vccd1 vssd1 vccd1 vssd1,",
+			   "vco_adc_wrapper vccd1 vssd1 vccd1 vssd1,",
+                           "vco_adc2 vdda1 vssa1 vdda1 vssa1"
 			  ],
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "MAGIC_DEF_LABELS": 0,
@@ -18,21 +20,28 @@
         "dir::../../verilog/gl/vmsu_8bit_top.v",
         "dir::../../verilog/gl/bec.v",
         "dir::../../verilog/gl/lovers_controller.v",
+        "dir::../../verilog/rtl/vco_adc2/vco_adc2.v",
+        "dir::../../verilog/gl/vco_adc_wrapper.v",
         "dir::../../verilog/gl/ascon_wrapper.v"
         ],
     "EXTRA_LEFS": ["dir::../../lef/vmsu_8bit_top.lef",
 		   "dir::../../lef/bec.lef",
 		   "dir::../../lef/lovers_controller.lef",
+		   "dir::../../lef/vco_adc2.lef",
+		   "dir::../../lef/vco_adc_wrapper.lef",
 		   "dir::../../lef/ascon_wrapper.lef"
                   ],
     "EXTRA_GDS_FILES": ["dir::../../gds/vmsu_8bit_top.gds",
 			"dir::../../gds/bec.gds",
 			"dir::../../gds/lovers_controller.gds",
+			"dir::../../gds/vco_adc2.gds",
+			"dir::../../gds/vco_adc_wrapper.gds",
 			"dir::../../gds/ascon_wrapper.gds"
                        ],
     "EXTRA_LIBS": ["dir::../../lib/vmsu_8bit_top.lib",
 		   "dir::../../lib/bec.lib",
 		   "dir::../../lib/lovers_controller.lib",
+		   "dir::../../lib/vco_adc_wrapper.lib",
 		   "dir::../../lib/ascon_wrapper.lib"
                   ],
     "EXTRA_SPEFS": [
@@ -48,6 +57,10 @@
         "dir::../../spef/multicorner/lovers_controller.min.spef", 
         "dir::../../spef/multicorner/lovers_controller.nom.spef", 
         "dir::../../spef/multicorner/lovers_controller.max.spef",
+        "vco_adc_wrapper", 
+        "dir::../../spef/multicorner/vco_adc_wrapper.min.spef", 
+        "dir::../../spef/multicorner/vco_adc_wrapper.nom.spef", 
+        "dir::../../spef/multicorner/vco_adc_wrapper.max.spef",
         "ascon_wrapper", 
         "dir::../../spef/multicorner/ascon_wrapper.min.spef", 
         "dir::../../spef/multicorner/ascon_wrapper.nom.spef", 
@@ -111,6 +124,8 @@
     ],
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "pdk::sky130*": {
+	"DECAP_CELL": "sky130_fd_sc_hd__decap_3",
+	"FILL_CELL": "sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1",
         "RT_MAX_LAYER": "met4",
         "DIE_AREA": "0 0 2920 3520",
         "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
