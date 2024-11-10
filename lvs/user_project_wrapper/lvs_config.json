@@ -28,7 +28,6 @@
 		"$UPRJ_ROOT/verilog/gl/ascon_wrapper.v",
 		"$UPRJ_ROOT/verilog/gl/bec.v",
 		"$UPRJ_ROOT/verilog/gl/lovers_controller.v",
-		"$UPRJ_ROOT/verilog/gl/vco_adc_wrapper.v",
 		"$UPRJ_ROOT/verilog/gl/$TOP_SOURCE.v"
 	],
 	"LAYOUT_FILE": "$UPRJ_ROOT/gds/$TOP_LAYOUT.gds"
