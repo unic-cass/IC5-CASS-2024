@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1731158405
+timestamp 1731302675
 << nwell >>
 rect 1066 97093 98846 97414
 rect 1066 96005 98846 96571
@@ -266,8 +266,8 @@ port 37 nsew ground bidirectional
 string FIXED_BBOX 0 0 100000 100000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 7687356
-string GDS_FILE /home/admin/projects/IC5-CASS-2024_2/openlane/vmsu_8bit/runs/24_11_09_20_14/results/signoff/vmsu_8bit_top.magic.gds
-string GDS_START 319774
+string GDS_END 4438474
+string GDS_FILE /home/admin/projects/IC5-CASS-2024_2/openlane/vmsu_8bit/runs/24_11_11_12_20/results/signoff/vmsu_8bit_top.magic.gds
+string GDS_START 333016
 << end >>
 

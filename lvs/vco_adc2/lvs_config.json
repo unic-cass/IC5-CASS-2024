@@ -21,7 +21,6 @@
 	    "sky130_fd_sc_hd__dfstp_1",
 	    "sky130_fd_sc_hd__dfxtp_1",
 	    "sky130_fd_sc_hd__dfxbp_2",
-	    "sky130_fd_pr__res_generic_po",
 	    "sky130_fd_pr__res_xhigh_po_0p35"
 	],
 	"LVS_SPICE_FILES": [

@@ -111,8 +111,6 @@
     ],
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "pdk::sky130*": {
-	"DECAP_CELL": "sky130_fd_sc_hd__decap_3",
-	"FILL_CELL": "sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1",
         "RT_MAX_LAYER": "met4",
         "DIE_AREA": "0 0 2920 3520",
         "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",

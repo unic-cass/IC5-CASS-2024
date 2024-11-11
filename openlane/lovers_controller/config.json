@@ -31,8 +31,6 @@
     "BASE_SDC_FILE": "dir::base_controller.sdc",
     "RUN_CVC": 1,
     "pdk::sky130*": {
-	"DECAP_CELL": "sky130_fd_sc_hd__decap_3",
-	"FILL_CELL": "sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1",
         "FP_CORE_UTIL": 30,
         "RT_MAX_LAYER": "met4",
         "scl::sky130_fd_sc_hd": {

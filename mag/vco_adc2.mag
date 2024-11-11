@@ -1,9 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1731204629
-<< isosubstrate >>
-rect -10200 -24000 26000 12800
+timestamp 1731059030
 << locali >>
 rect -710 8050 -310 8070
 rect -710 8010 -690 8050

@@ -16,7 +16,7 @@ x6 net1 FeedBack enable_in D2 vdda1 vssa1 DLib_UpDownCounter
 x1 VDDA ENB GND GND VDDA VDDA pn[4] sky130_fd_sc_hd__einvp_1
 R1 Vctrl Anlg_in sky130_fd_pr__res_generic_po W=0.482 L=2 m=1
 R2 GND Vctrl sky130_fd_pr__res_generic_po W=0.482 L=2 m=1
-Xro_1 pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p[4] Vctrl VDDA GND x5s_cc_osc
+Xro_1 pn[4] p[4] Vctrl VDDA GND x5s_cc_osc
 .ends
 
 
@@ -30,7 +30,7 @@ x2 p_osc GND GND VDDA VDDA pha_ro sky130_fd_sc_hd__buf_2
 x3 Vbs_12 Vbs_12 Vbs_34 Vbs_34 Dctrl Isup VDDA GND ALib_IDAC
 Xdiv2 pha_ro ro_div2 VDDA GND DLib_freqDiv2
 Xdiv2_1 ro_div2 pha_DCO VDDA GND DLib_freqDiv2
-x5 pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p_osc Isup GND x5s_cc_osc_dco
+x5 pn[4] p_osc Isup GND x5s_cc_osc_dco
 .ends
 
 
@@ -69,16 +69,16 @@ X_inv_1 Q2 GND GND VDDA VDDA Q2N sky130_fd_sc_hd__inv_2
 .ends
 
 
-* expanding   symbol:  x5s_cc_osc.sym # of pins=13
+* expanding   symbol:  x5s_cc_osc.sym # of pins=5
 ** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc.sym
 ** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc.sch
-.subckt x5s_cc_osc pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p[4] VGND VDDA GND
-*.PININFO VDDA:B VGND:B pn[0]:O p[0]:B pn[1]:O p[1]:O p[2]:O p[3]:O p[4]:O pn[2]:O pn[3]:O pn[4]:O GND:B
-Xi_1 p[4] pn[4] p[0] pn[0] VGND VDDA GND cc_inv
-Xi_2 p[0] pn[0] p[1] pn[1] VGND VDDA GND cc_inv
-Xi_3 p[1] pn[1] p[2] pn[2] VGND VDDA GND cc_inv
-Xi_4 p[2] pn[2] p[3] pn[3] VGND VDDA GND cc_inv
-Xi_6 p[3] pn[3] p[4] pn[4] VGND VDDA GND cc_inv
+.subckt x5s_cc_osc pn[4] p[4] VGND VDDA GND
+*.PININFO VDDA:B VGND:B p[4]:O pn[4]:O GND:B
+Xi_1 p[4] pn[4] net1 net2 VGND VDDA GND cc_inv
+Xi_2 net1 net2 net5 net6 VGND VDDA GND cc_inv
+Xi_3 net5 net6 net3 net4 VGND VDDA GND cc_inv
+Xi_4 net3 net4 net7 net8 VGND VDDA GND cc_inv
+Xi_6 net7 net8 p[4] pn[4] VGND VDDA GND cc_inv
 .ends
 
 
@@ -97,7 +97,7 @@ XM5 Isup lock add_pwr add_pwr sky130_fd_pr__pfet_01v8_hvt L=0.5 W=8 nf=2 m=1
 XM6 add_pwr open Isup GND sky130_fd_pr__nfet_01v8 L=0.5 W=4 nf=2 m=1
 XM7 input_R open add_pwr add_pwr sky130_fd_pr__pfet_01v8_hvt L=0.5 W=8 nf=2 m=1
 XM8 add_pwr lock input_R GND sky130_fd_pr__nfet_01v8 L=0.5 W=4 nf=2 m=1
-XR2 GND input_R GND sky130_fd_pr__res_xhigh_po_0p35 L=8.4 mult=1 m=1
+XR2 GND input_R GND sky130_fd_pr__res_xhigh_po_0p35 L=8.56 mult=1 m=1
 .ends
 
 
@@ -113,16 +113,16 @@ x4 Q_N GND GND VDDA VDDA Q_N_buf sky130_fd_sc_hd__buf_4
 .ends
 
 
-* expanding   symbol:  x5s_cc_osc_dco.sym # of pins=12
+* expanding   symbol:  x5s_cc_osc_dco.sym # of pins=4
 ** sym_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc_dco.sym
 ** sch_path: /home/toind/work/sislab_vnu/vco_adc2/xschem/lib/x5s_cc_osc_dco.sch
-.subckt x5s_cc_osc_dco pn[0] pn[1] pn[2] pn[3] pn[4] p[0] p[1] p[2] p[3] p[4] VDDA VGND
-*.PININFO VDDA:B VGND:B pn[0]:O p[0]:B pn[1]:O p[1]:O p[2]:O p[3]:O p[4]:O pn[2]:O pn[3]:O pn[4]:O
-x1 p[4] pn[4] p[0] pn[0] VDDA VGND cc_inv_dco
-x2 p[0] pn[0] p[1] pn[1] VDDA VGND cc_inv_dco
-x3 p[1] pn[1] p[2] pn[2] VDDA VGND cc_inv_dco
-x4 p[2] pn[2] p[3] pn[3] VDDA VGND cc_inv_dco
-x5 p[3] pn[3] p[4] pn[4] VDDA VGND cc_inv_dco
+.subckt x5s_cc_osc_dco pn[4] p[4] VDDA VGND
+*.PININFO VDDA:B VGND:B p[4]:O pn[4]:O
+x1 p[4] pn[4] net1 net2 VDDA VGND cc_inv_dco
+x2 net1 net2 net5 net8 VDDA VGND cc_inv_dco
+x3 net5 net8 net3 net4 VDDA VGND cc_inv_dco
+x4 net3 net4 net6 net7 VDDA VGND cc_inv_dco
+x5 net6 net7 p[4] pn[4] VDDA VGND cc_inv_dco
 .ends
 
 
