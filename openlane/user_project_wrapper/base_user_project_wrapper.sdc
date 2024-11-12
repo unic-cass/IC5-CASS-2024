@@ -28,6 +28,11 @@ if { ![info exists ::env(SYNTH_CLK_DRIVING_CELL_PIN)] } {
 	set ::env(SYNTH_CLK_DRIVING_CELL_PIN) $::env(SYNTH_DRIVING_CELL_PIN)
 }
 
+create_clock [get_ports {io_in[16]}] -name ascon_clk -period $::env(CLOCK_PERIOD)
+puts "\[INFO\]: Creating clock {ascon_clk} for port {io_in[16]} with period: $::env(CLOCK_PERIOD)"
+
+set_false_path -from [get_clock {ascon_clk}] -to [get_clock {clk}]
+
 # Clock non-idealities
 set_propagated_clock [all_clocks]
 set_clock_uncertainty $::env(SYNTH_CLOCK_UNCERTAINTY) [get_clocks {clk}]
@@ -95,12 +100,24 @@ set_input_delay -min 1.19 -clock [get_clocks {clk}] [get_ports {wbs_sel_i[*]}]
 set_input_delay -min 1.65 -clock [get_clocks {clk}] [get_ports {wbs_we_i}]
 set_input_delay -min 1.69 -clock [get_clocks {clk}] [get_ports {wbs_cyc_i}]
 set_input_delay -min 1.86 -clock [get_clocks {clk}] [get_ports {wbs_stb_i}]
-if { $::env(IO_SYNC) } {
-	set in_ext_delay 4
-	puts "\[INFO\]: Setting input ports external delay to: $in_ext_delay"
-	set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {clk}] [get_ports {io_in[*]}]
-	set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {clk}] [get_ports {io_in[*]}]
-}
+
+set in_ext_delay 4
+puts "\[INFO\]: Setting input ports external delay to: $in_ext_delay"
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[15]}]
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[14]}]
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[13]}]
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[12]}]
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[11]}]
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[10]}]
+set_input_delay -max [expr $in_ext_delay + 4.55] -clock [get_clocks {ascon_clk}] [get_ports {io_in[9]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[15]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[14]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[13]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[12]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[11]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[10]}]
+set_input_delay -min [expr $in_ext_delay + 1.26] -clock [get_clocks {ascon_clk}] [get_ports {io_in[9]}]
+
 
 # Input Transition
 set_input_transition -max 0.14  [get_ports {wbs_we_i}]
@@ -131,14 +148,22 @@ set_output_delay -min 0    -clock [get_clocks {clk}] [get_ports {la_data_out[*]}
 set_output_delay -min 0    -clock [get_clocks {clk}] [get_ports {user_irq[*]}]
 set_output_delay -min 1.13 -clock [get_clocks {clk}] [get_ports {wbs_dat_o[*]}]
 set_output_delay -min 1.37 -clock [get_clocks {clk}] [get_ports {wbs_ack_o}]
-if { $::env(IO_SYNC) } {
-	set out_ext_delay 4
-	puts "\[INFO\]: Setting output ports external delay to: $out_ext_delay"
-	set_output_delay -max [expr $out_ext_delay + 9.12] -clock [get_clocks {clk}] [get_ports {io_out[*]}]
-	set_output_delay -max [expr $out_ext_delay + 9.32] -clock [get_clocks {clk}] [get_ports {io_oeb[*]}]
-	set_output_delay -min [expr $out_ext_delay + 2.34] -clock [get_clocks {clk}] [get_ports {io_oeb[*]}]
-	set_output_delay -min [expr $out_ext_delay + 3.9]  -clock [get_clocks {clk}] [get_ports {io_out[*]}]
-}
+
+set out_ext_delay 4
+puts "\[INFO\]: Setting output ports external delay to: $out_ext_delay"
+set_output_delay -max [expr $out_ext_delay + 9.12] -clock [get_clocks {ascon_clk}] [get_ports {io_out[19]}]
+set_output_delay -max [expr $out_ext_delay + 9.12] -clock [get_clocks {ascon_clk}] [get_ports {io_out[18]}]
+set_output_delay -max [expr $out_ext_delay + 9.12] -clock [get_clocks {ascon_clk}] [get_ports {io_out[17]}]
+# set_output_delay -max [expr $out_ext_delay + 9.32] -clock [get_clocks {ascon_clk}] [get_ports {io_oeb[*]}]
+# set_output_delay -min [expr $out_ext_delay + 2.34] -clock [get_clocks {ascon_clk}] [get_ports {io_oeb[*]}]
+set_output_delay -min [expr $out_ext_delay + 3.9]  -clock [get_clocks {ascon_clk}] [get_ports {io_out[19]}]
+set_output_delay -min [expr $out_ext_delay + 3.9]  -clock [get_clocks {ascon_clk}] [get_ports {io_out[18]}]
+set_output_delay -min [expr $out_ext_delay + 3.9]  -clock [get_clocks {ascon_clk}] [get_ports {io_out[17]}]
+
+set_output_delay -max [expr $out_ext_delay + 9.12] -clock [get_clocks {clk}] [get_ports {io_out[8]}]
+set_output_delay -min [expr $out_ext_delay + 3.9]  -clock [get_clocks {clk}] [get_ports {io_out[8]}]
+set_output_delay -max [expr $out_ext_delay + 9.32] -clock [get_clocks {ascon_clk}] [get_ports {io_oeb[8]}]
+set_output_delay -min [expr $out_ext_delay + 2.34] -clock [get_clocks {ascon_clk}] [get_ports {io_oeb[8]}]
 
 # Output loads
 set_load 0.19 [all_outputs]

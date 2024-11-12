@@ -1,17 +1,17 @@
-// // // SPDX-FileCopyrightText: 2020 Efabless Corporation
-// // //
-// // // Licensed under the Apache License, Version 2.0 (the "License");
-// // // you may not use this file except in compliance with the License.
-// // // You may obtain a copy of the License at
-// // //
-// // //      http://www.apache.org/licenses/LICENSE-2.0
-// // //
-// // // Unless required by applicable law or agreed to in writing, software
-// // // distributed under the License is distributed on an "AS IS" BASIS,
-// // // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// // // See the License for the specific language governing permissions and
-// // // limitations under the License.
-// // // SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: 2020 Efabless Corporation
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
 
 `default_nettype none
 
@@ -48,7 +48,8 @@ module lovers_controller (
 );
 	wire clk;
 	wire rst;
-	reg enable_write, enable_proc, updateRegs;
+        reg rst_sync1_reg, rst_sync2_reg;
+   	reg enable_write, enable_proc, updateRegs;
 	reg master_ena_proc;
 	reg mode_exec, first_round;
 	
@@ -69,11 +70,17 @@ module lovers_controller (
 
 	// Assuming LA probes [65:64] are for controlling the count clk & reset  
 	assign clk = wb_clk_i;
-	assign rst = wb_rst_i;
+	assign rst = rst_sync2_reg;
 
 	assign io_out = slv_enable;
 
-    assign io_oeb = {rst};
+   assign io_oeb = {rst};
+
+        always @(posedge clk) begin
+	   rst_sync1_reg <= wb_rst_i;
+	   rst_sync2_reg <= rst_sync1_reg;
+	end
+   
 
 	always @(posedge clk) begin
 		if (rst) 

@@ -12,7 +12,6 @@
         "dir::../../verilog/rtl/hs_ascon/permutation/roundconstant.v",
         "dir::../../verilog/rtl/hs_ascon/permutation/substitution_layer.v"
     ],
-    "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "clk",
     "CLOCK_NET": "ascon_wrapper.clk",
     "IO_SYNC": 1,
@@ -29,22 +28,19 @@
     "SYNTH_STRATEGY": "AREA 3",
     "MAGIC_DEF_LABELS": 0,
     "SYNTH_BUFFERING": 1,
-    "DECAP_CELL": "sky130_fd_sc_hd__decap_3",
-    "FILL_CELL": "sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1",
     "VDD_NETS": [
         "vccd1"
     ],
     "GND_NETS": [
         "vssd1"
     ],
-    "IO_SYNC": 0,
     "BASE_SDC_FILE": "dir::base_hs_ascon.sdc",
     "RUN_CVC": 1,
     "pdk::sky130*": {
         "FP_CORE_UTIL": 70,
         "RT_MAX_LAYER": "met5",
         "scl::sky130_fd_sc_hd": {
-            "CLOCK_PERIOD": 10
+            "CLOCK_PERIOD": 25
         },
         "scl::sky130_fd_sc_hdll": {
             "CLOCK_PERIOD": 10

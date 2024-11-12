@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Fri Nov  8 10:53:49 2024
+# Tue Nov 12 14:30:33 2024
 ###############################################################################
 current_design user_project_wrapper
 ###############################################################################
@@ -10,8 +10,24 @@ create_clock -name clk -period 25.0000 [get_ports {wb_clk_i}]
 set_clock_transition 0.1500 [get_clocks {clk}]
 set_clock_uncertainty 0.2500 clk
 set_propagated_clock [get_clocks {clk}]
+create_clock -name ascon_clk -period 25.0000 [get_ports {io_in[16]}]
+set_propagated_clock [get_clocks {ascon_clk}]
 set_clock_latency -source -min 4.6500 [get_clocks {clk}]
 set_clock_latency -source -max 5.5700 [get_clocks {clk}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[10]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[10]}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[11]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[11]}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[12]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[12]}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[13]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[13]}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[14]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[14]}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[15]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[15]}]
+set_input_delay 5.2600 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_in[9]}]
+set_input_delay 8.5500 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_in[9]}]
 set_input_delay 0.1800 -clock [get_clocks {clk}] -min -add_delay [get_ports {la_data_in[0]}]
 set_input_delay 1.8700 -clock [get_clocks {clk}] -max -add_delay [get_ports {la_data_in[0]}]
 set_input_delay 0.1800 -clock [get_clocks {clk}] -min -add_delay [get_ports {la_data_in[100]}]
@@ -667,6 +683,16 @@ set_input_delay 1.8600 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs
 set_input_delay 4.1300 -clock [get_clocks {clk}] -max -add_delay [get_ports {wbs_stb_i}]
 set_input_delay 1.6500 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs_we_i}]
 set_input_delay 3.7400 -clock [get_clocks {clk}] -max -add_delay [get_ports {wbs_we_i}]
+set_output_delay 6.3400 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_oeb[8]}]
+set_output_delay 13.3200 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_oeb[8]}]
+set_output_delay 7.9000 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_out[17]}]
+set_output_delay 13.1200 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_out[17]}]
+set_output_delay 7.9000 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_out[18]}]
+set_output_delay 13.1200 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_out[18]}]
+set_output_delay 7.9000 -clock [get_clocks {ascon_clk}] -min -add_delay [get_ports {io_out[19]}]
+set_output_delay 13.1200 -clock [get_clocks {ascon_clk}] -max -add_delay [get_ports {io_out[19]}]
+set_output_delay 7.9000 -clock [get_clocks {clk}] -min -add_delay [get_ports {io_out[8]}]
+set_output_delay 13.1200 -clock [get_clocks {clk}] -max -add_delay [get_ports {io_out[8]}]
 set_output_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {la_data_out[0]}]
 set_output_delay 1.0000 -clock [get_clocks {clk}] -max -add_delay [get_ports {la_data_out[0]}]
 set_output_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {la_data_out[100]}]
@@ -1003,6 +1029,9 @@ set_multicycle_path -setup\
     -through [list [get_ports {wbs_ack_o}]\
            [get_ports {wbs_cyc_i}]\
            [get_ports {wbs_stb_i}]] 2
+set_false_path\
+    -from [get_clocks {ascon_clk}]\
+    -to [get_clocks {clk}]
 ###############################################################################
 # Environment
 ###############################################################################

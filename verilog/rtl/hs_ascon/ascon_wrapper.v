@@ -10,15 +10,20 @@ module ascon_wrapper (
     input      clk,
     input      rst,
     input      [5:0] io_in,
-    output reg [2:0] io_out,
-    output reg [10:0] io_oeb
+    output [2:0] io_out,
+    output [10:0] io_oeb
 );
-
-   assign io_oeb = 11'b1111_1111_000;
+   reg 		  rst_sync1, rst_sync2;
+   // FIXME: This should matched with the order in the io config
+   assign io_oeb = 11'b000_1111_1111;
+   always @(posedge clk) begin
+      rst_sync1 <= rst;
+      rst_sync2 <= rst_sync1;
+   end
 
     Ascon ascon(
         .clk(clk),
-        .rst(rst),
+        .rst(rst_sync2),
         .keyxSI(io_in[5]),
         .noncexSI(io_in[4]),
         .associated_dataxSI(io_in[3]),

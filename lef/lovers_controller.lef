@@ -6,14 +6,14 @@ MACRO lovers_controller
   CLASS BLOCK ;
   FOREIGN lovers_controller ;
   ORIGIN 0.000 0.000 ;
-  SIZE 670.840 BY 681.560 ;
+  SIZE 670.935 BY 681.655 ;
   PIN becStatus[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 94.850 677.560 95.130 681.560 ;
+        RECT 94.850 677.655 95.130 681.655 ;
     END
   END becStatus[0]
   PIN becStatus[1]
@@ -22,7 +22,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 103.130 677.560 103.410 681.560 ;
+        RECT 103.130 677.655 103.410 681.655 ;
     END
   END becStatus[1]
   PIN becStatus[2]
@@ -31,7 +31,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 111.410 677.560 111.690 681.560 ;
+        RECT 111.410 677.655 111.690 681.655 ;
     END
   END becStatus[2]
   PIN becStatus[3]
@@ -40,7 +40,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 119.690 677.560 119.970 681.560 ;
+        RECT 119.690 677.655 119.970 681.655 ;
     END
   END becStatus[3]
   PIN data_in[0]
@@ -49,7 +49,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 136.250 677.560 136.530 681.560 ;
+        RECT 136.250 677.655 136.530 681.655 ;
     END
   END data_in[0]
   PIN data_in[10]
@@ -58,7 +58,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 301.850 677.560 302.130 681.560 ;
+        RECT 301.850 677.655 302.130 681.655 ;
     END
   END data_in[10]
   PIN data_in[11]
@@ -67,7 +67,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 318.410 677.560 318.690 681.560 ;
+        RECT 318.410 677.655 318.690 681.655 ;
     END
   END data_in[11]
   PIN data_in[12]
@@ -76,7 +76,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 334.970 677.560 335.250 681.560 ;
+        RECT 334.970 677.655 335.250 681.655 ;
     END
   END data_in[12]
   PIN data_in[13]
@@ -85,7 +85,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 351.530 677.560 351.810 681.560 ;
+        RECT 351.530 677.655 351.810 681.655 ;
     END
   END data_in[13]
   PIN data_in[14]
@@ -94,7 +94,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 368.090 677.560 368.370 681.560 ;
+        RECT 368.090 677.655 368.370 681.655 ;
     END
   END data_in[14]
   PIN data_in[15]
@@ -103,7 +103,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 384.650 677.560 384.930 681.560 ;
+        RECT 384.650 677.655 384.930 681.655 ;
     END
   END data_in[15]
   PIN data_in[16]
@@ -112,7 +112,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 401.210 677.560 401.490 681.560 ;
+        RECT 401.210 677.655 401.490 681.655 ;
     END
   END data_in[16]
   PIN data_in[17]
@@ -121,7 +121,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 417.770 677.560 418.050 681.560 ;
+        RECT 417.770 677.655 418.050 681.655 ;
     END
   END data_in[17]
   PIN data_in[18]
@@ -130,7 +130,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 434.330 677.560 434.610 681.560 ;
+        RECT 434.330 677.655 434.610 681.655 ;
     END
   END data_in[18]
   PIN data_in[19]
@@ -139,7 +139,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 450.890 677.560 451.170 681.560 ;
+        RECT 450.890 677.655 451.170 681.655 ;
     END
   END data_in[19]
   PIN data_in[1]
@@ -148,7 +148,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 152.810 677.560 153.090 681.560 ;
+        RECT 152.810 677.655 153.090 681.655 ;
     END
   END data_in[1]
   PIN data_in[20]
@@ -157,7 +157,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 467.450 677.560 467.730 681.560 ;
+        RECT 467.450 677.655 467.730 681.655 ;
     END
   END data_in[20]
   PIN data_in[21]
@@ -166,7 +166,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 484.010 677.560 484.290 681.560 ;
+        RECT 484.010 677.655 484.290 681.655 ;
     END
   END data_in[21]
   PIN data_in[22]
@@ -175,7 +175,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 500.570 677.560 500.850 681.560 ;
+        RECT 500.570 677.655 500.850 681.655 ;
     END
   END data_in[22]
   PIN data_in[23]
@@ -184,7 +184,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 517.130 677.560 517.410 681.560 ;
+        RECT 517.130 677.655 517.410 681.655 ;
     END
   END data_in[23]
   PIN data_in[24]
@@ -193,7 +193,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 533.690 677.560 533.970 681.560 ;
+        RECT 533.690 677.655 533.970 681.655 ;
     END
   END data_in[24]
   PIN data_in[25]
@@ -202,7 +202,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 550.250 677.560 550.530 681.560 ;
+        RECT 550.250 677.655 550.530 681.655 ;
     END
   END data_in[25]
   PIN data_in[26]
@@ -211,7 +211,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 566.810 677.560 567.090 681.560 ;
+        RECT 566.810 677.655 567.090 681.655 ;
     END
   END data_in[26]
   PIN data_in[27]
@@ -220,7 +220,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 583.370 677.560 583.650 681.560 ;
+        RECT 583.370 677.655 583.650 681.655 ;
     END
   END data_in[27]
   PIN data_in[28]
@@ -229,7 +229,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 599.930 677.560 600.210 681.560 ;
+        RECT 599.930 677.655 600.210 681.655 ;
     END
   END data_in[28]
   PIN data_in[29]
@@ -238,7 +238,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 616.490 677.560 616.770 681.560 ;
+        RECT 616.490 677.655 616.770 681.655 ;
     END
   END data_in[29]
   PIN data_in[2]
@@ -247,7 +247,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 169.370 677.560 169.650 681.560 ;
+        RECT 169.370 677.655 169.650 681.655 ;
     END
   END data_in[2]
   PIN data_in[30]
@@ -256,7 +256,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 633.050 677.560 633.330 681.560 ;
+        RECT 633.050 677.655 633.330 681.655 ;
     END
   END data_in[30]
   PIN data_in[31]
@@ -265,7 +265,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 649.610 677.560 649.890 681.560 ;
+        RECT 649.610 677.655 649.890 681.655 ;
     END
   END data_in[31]
   PIN data_in[3]
@@ -274,7 +274,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 185.930 677.560 186.210 681.560 ;
+        RECT 185.930 677.655 186.210 681.655 ;
     END
   END data_in[3]
   PIN data_in[4]
@@ -283,7 +283,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 202.490 677.560 202.770 681.560 ;
+        RECT 202.490 677.655 202.770 681.655 ;
     END
   END data_in[4]
   PIN data_in[5]
@@ -292,7 +292,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 219.050 677.560 219.330 681.560 ;
+        RECT 219.050 677.655 219.330 681.655 ;
     END
   END data_in[5]
   PIN data_in[6]
@@ -301,7 +301,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 235.610 677.560 235.890 681.560 ;
+        RECT 235.610 677.655 235.890 681.655 ;
     END
   END data_in[6]
   PIN data_in[7]
@@ -310,7 +310,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 252.170 677.560 252.450 681.560 ;
+        RECT 252.170 677.655 252.450 681.655 ;
     END
   END data_in[7]
   PIN data_in[8]
@@ -319,7 +319,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 268.730 677.560 269.010 681.560 ;
+        RECT 268.730 677.655 269.010 681.655 ;
     END
   END data_in[8]
   PIN data_in[9]
@@ -328,7 +328,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 285.290 677.560 285.570 681.560 ;
+        RECT 285.290 677.655 285.570 681.655 ;
     END
   END data_in[9]
   PIN data_out[0]
@@ -337,7 +337,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 144.530 677.560 144.810 681.560 ;
+        RECT 144.530 677.655 144.810 681.655 ;
     END
   END data_out[0]
   PIN data_out[10]
@@ -346,7 +346,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 310.130 677.560 310.410 681.560 ;
+        RECT 310.130 677.655 310.410 681.655 ;
     END
   END data_out[10]
   PIN data_out[11]
@@ -355,7 +355,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 326.690 677.560 326.970 681.560 ;
+        RECT 326.690 677.655 326.970 681.655 ;
     END
   END data_out[11]
   PIN data_out[12]
@@ -364,7 +364,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 343.250 677.560 343.530 681.560 ;
+        RECT 343.250 677.655 343.530 681.655 ;
     END
   END data_out[12]
   PIN data_out[13]
@@ -373,7 +373,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 359.810 677.560 360.090 681.560 ;
+        RECT 359.810 677.655 360.090 681.655 ;
     END
   END data_out[13]
   PIN data_out[14]
@@ -382,7 +382,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 376.370 677.560 376.650 681.560 ;
+        RECT 376.370 677.655 376.650 681.655 ;
     END
   END data_out[14]
   PIN data_out[15]
@@ -391,7 +391,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 392.930 677.560 393.210 681.560 ;
+        RECT 392.930 677.655 393.210 681.655 ;
     END
   END data_out[15]
   PIN data_out[16]
@@ -400,7 +400,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 409.490 677.560 409.770 681.560 ;
+        RECT 409.490 677.655 409.770 681.655 ;
     END
   END data_out[16]
   PIN data_out[17]
@@ -409,7 +409,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 426.050 677.560 426.330 681.560 ;
+        RECT 426.050 677.655 426.330 681.655 ;
     END
   END data_out[17]
   PIN data_out[18]
@@ -418,7 +418,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 442.610 677.560 442.890 681.560 ;
+        RECT 442.610 677.655 442.890 681.655 ;
     END
   END data_out[18]
   PIN data_out[19]
@@ -427,7 +427,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 459.170 677.560 459.450 681.560 ;
+        RECT 459.170 677.655 459.450 681.655 ;
     END
   END data_out[19]
   PIN data_out[1]
@@ -436,7 +436,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 161.090 677.560 161.370 681.560 ;
+        RECT 161.090 677.655 161.370 681.655 ;
     END
   END data_out[1]
   PIN data_out[20]
@@ -445,7 +445,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 475.730 677.560 476.010 681.560 ;
+        RECT 475.730 677.655 476.010 681.655 ;
     END
   END data_out[20]
   PIN data_out[21]
@@ -454,7 +454,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 492.290 677.560 492.570 681.560 ;
+        RECT 492.290 677.655 492.570 681.655 ;
     END
   END data_out[21]
   PIN data_out[22]
@@ -463,7 +463,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 508.850 677.560 509.130 681.560 ;
+        RECT 508.850 677.655 509.130 681.655 ;
     END
   END data_out[22]
   PIN data_out[23]
@@ -472,7 +472,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 525.410 677.560 525.690 681.560 ;
+        RECT 525.410 677.655 525.690 681.655 ;
     END
   END data_out[23]
   PIN data_out[24]
@@ -481,7 +481,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 541.970 677.560 542.250 681.560 ;
+        RECT 541.970 677.655 542.250 681.655 ;
     END
   END data_out[24]
   PIN data_out[25]
@@ -490,7 +490,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 558.530 677.560 558.810 681.560 ;
+        RECT 558.530 677.655 558.810 681.655 ;
     END
   END data_out[25]
   PIN data_out[26]
@@ -499,7 +499,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 575.090 677.560 575.370 681.560 ;
+        RECT 575.090 677.655 575.370 681.655 ;
     END
   END data_out[26]
   PIN data_out[27]
@@ -508,7 +508,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 591.650 677.560 591.930 681.560 ;
+        RECT 591.650 677.655 591.930 681.655 ;
     END
   END data_out[27]
   PIN data_out[28]
@@ -517,7 +517,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 608.210 677.560 608.490 681.560 ;
+        RECT 608.210 677.655 608.490 681.655 ;
     END
   END data_out[28]
   PIN data_out[29]
@@ -526,7 +526,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 624.770 677.560 625.050 681.560 ;
+        RECT 624.770 677.655 625.050 681.655 ;
     END
   END data_out[29]
   PIN data_out[2]
@@ -535,7 +535,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 177.650 677.560 177.930 681.560 ;
+        RECT 177.650 677.655 177.930 681.655 ;
     END
   END data_out[2]
   PIN data_out[30]
@@ -544,7 +544,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 641.330 677.560 641.610 681.560 ;
+        RECT 641.330 677.655 641.610 681.655 ;
     END
   END data_out[30]
   PIN data_out[31]
@@ -553,7 +553,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 657.890 677.560 658.170 681.560 ;
+        RECT 657.890 677.655 658.170 681.655 ;
     END
   END data_out[31]
   PIN data_out[3]
@@ -562,7 +562,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 194.210 677.560 194.490 681.560 ;
+        RECT 194.210 677.655 194.490 681.655 ;
     END
   END data_out[3]
   PIN data_out[4]
@@ -571,7 +571,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 210.770 677.560 211.050 681.560 ;
+        RECT 210.770 677.655 211.050 681.655 ;
     END
   END data_out[4]
   PIN data_out[5]
@@ -580,7 +580,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 227.330 677.560 227.610 681.560 ;
+        RECT 227.330 677.655 227.610 681.655 ;
     END
   END data_out[5]
   PIN data_out[6]
@@ -589,7 +589,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 243.890 677.560 244.170 681.560 ;
+        RECT 243.890 677.655 244.170 681.655 ;
     END
   END data_out[6]
   PIN data_out[7]
@@ -598,7 +598,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 260.450 677.560 260.730 681.560 ;
+        RECT 260.450 677.655 260.730 681.655 ;
     END
   END data_out[7]
   PIN data_out[8]
@@ -607,7 +607,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 277.010 677.560 277.290 681.560 ;
+        RECT 277.010 677.655 277.290 681.655 ;
     END
   END data_out[8]
   PIN data_out[9]
@@ -616,7 +616,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 293.570 677.560 293.850 681.560 ;
+        RECT 293.570 677.655 293.850 681.655 ;
     END
   END data_out[9]
   PIN io_oeb
@@ -625,7 +625,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met3 ;
-        RECT 666.840 510.040 670.840 510.640 ;
+        RECT 666.935 510.040 670.935 510.640 ;
     END
   END io_oeb
   PIN io_out
@@ -634,7 +634,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met3 ;
-        RECT 666.840 170.040 670.840 170.640 ;
+        RECT 666.935 170.040 670.935 170.640 ;
     END
   END io_out
   PIN ki
@@ -643,7 +643,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 70.010 677.560 70.290 681.560 ;
+        RECT 70.010 677.655 70.290 681.655 ;
     END
   END ki
   PIN la_data_in[0]
@@ -1228,7 +1228,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 61.730 677.560 62.010 681.560 ;
+        RECT 61.730 677.655 62.010 681.655 ;
     END
   END load_data
   PIN load_status[0]
@@ -1237,7 +1237,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 12.050 677.560 12.330 681.560 ;
+        RECT 12.050 677.655 12.330 681.655 ;
     END
   END load_status[0]
   PIN load_status[1]
@@ -1246,7 +1246,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 20.330 677.560 20.610 681.560 ;
+        RECT 20.330 677.655 20.610 681.655 ;
     END
   END load_status[1]
   PIN load_status[2]
@@ -1255,7 +1255,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 28.610 677.560 28.890 681.560 ;
+        RECT 28.610 677.655 28.890 681.655 ;
     END
   END load_status[2]
   PIN load_status[3]
@@ -1264,7 +1264,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 36.890 677.560 37.170 681.560 ;
+        RECT 36.890 677.655 37.170 681.655 ;
     END
   END load_status[3]
   PIN load_status[4]
@@ -1273,7 +1273,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 45.170 677.560 45.450 681.560 ;
+        RECT 45.170 677.655 45.450 681.655 ;
     END
   END load_status[4]
   PIN load_status[5]
@@ -1282,7 +1282,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 53.450 677.560 53.730 681.560 ;
+        RECT 53.450 677.655 53.730 681.655 ;
     END
   END load_status[5]
   PIN next_key
@@ -1291,7 +1291,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 78.290 677.560 78.570 681.560 ;
+        RECT 78.290 677.655 78.570 681.655 ;
     END
   END next_key
   PIN slv_done
@@ -1300,7 +1300,7 @@ MACRO lovers_controller
     ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met2 ;
-        RECT 86.570 677.560 86.850 681.560 ;
+        RECT 86.570 677.655 86.850 681.655 ;
     END
   END slv_done
   PIN slv_enable
@@ -1309,7 +1309,7 @@ MACRO lovers_controller
     ANTENNADIFFAREA 2.673000 ;
     PORT
       LAYER met2 ;
-        RECT 127.970 677.560 128.250 681.560 ;
+        RECT 127.970 677.655 128.250 681.655 ;
     END
   END slv_enable
   PIN vccd1
@@ -1360,7 +1360,6 @@ MACRO lovers_controller
     DIRECTION INPUT ;
     USE SIGNAL ;
     ANTENNAGATEAREA 0.852000 ;
-    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met2 ;
         RECT 6.070 0.000 6.350 4.000 ;
@@ -1369,7 +1368,7 @@ MACRO lovers_controller
   PIN wb_rst_i
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.213000 ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met2 ;
         RECT 16.190 0.000 16.470 4.000 ;
@@ -1501,89 +1500,89 @@ MACRO lovers_controller
       LAYER li1 ;
         RECT 5.520 10.795 665.160 669.205 ;
       LAYER met1 ;
-        RECT 5.520 8.880 665.160 669.360 ;
+        RECT 5.520 6.840 665.460 669.760 ;
       LAYER met2 ;
-        RECT 6.080 677.280 11.770 678.370 ;
-        RECT 12.610 677.280 20.050 678.370 ;
-        RECT 20.890 677.280 28.330 678.370 ;
-        RECT 29.170 677.280 36.610 678.370 ;
-        RECT 37.450 677.280 44.890 678.370 ;
-        RECT 45.730 677.280 53.170 678.370 ;
-        RECT 54.010 677.280 61.450 678.370 ;
-        RECT 62.290 677.280 69.730 678.370 ;
-        RECT 70.570 677.280 78.010 678.370 ;
-        RECT 78.850 677.280 86.290 678.370 ;
-        RECT 87.130 677.280 94.570 678.370 ;
-        RECT 95.410 677.280 102.850 678.370 ;
-        RECT 103.690 677.280 111.130 678.370 ;
-        RECT 111.970 677.280 119.410 678.370 ;
-        RECT 120.250 677.280 127.690 678.370 ;
-        RECT 128.530 677.280 135.970 678.370 ;
-        RECT 136.810 677.280 144.250 678.370 ;
-        RECT 145.090 677.280 152.530 678.370 ;
-        RECT 153.370 677.280 160.810 678.370 ;
-        RECT 161.650 677.280 169.090 678.370 ;
-        RECT 169.930 677.280 177.370 678.370 ;
-        RECT 178.210 677.280 185.650 678.370 ;
-        RECT 186.490 677.280 193.930 678.370 ;
-        RECT 194.770 677.280 202.210 678.370 ;
-        RECT 203.050 677.280 210.490 678.370 ;
-        RECT 211.330 677.280 218.770 678.370 ;
-        RECT 219.610 677.280 227.050 678.370 ;
-        RECT 227.890 677.280 235.330 678.370 ;
-        RECT 236.170 677.280 243.610 678.370 ;
-        RECT 244.450 677.280 251.890 678.370 ;
-        RECT 252.730 677.280 260.170 678.370 ;
-        RECT 261.010 677.280 268.450 678.370 ;
-        RECT 269.290 677.280 276.730 678.370 ;
-        RECT 277.570 677.280 285.010 678.370 ;
-        RECT 285.850 677.280 293.290 678.370 ;
-        RECT 294.130 677.280 301.570 678.370 ;
-        RECT 302.410 677.280 309.850 678.370 ;
-        RECT 310.690 677.280 318.130 678.370 ;
-        RECT 318.970 677.280 326.410 678.370 ;
-        RECT 327.250 677.280 334.690 678.370 ;
-        RECT 335.530 677.280 342.970 678.370 ;
-        RECT 343.810 677.280 351.250 678.370 ;
-        RECT 352.090 677.280 359.530 678.370 ;
-        RECT 360.370 677.280 367.810 678.370 ;
-        RECT 368.650 677.280 376.090 678.370 ;
-        RECT 376.930 677.280 384.370 678.370 ;
-        RECT 385.210 677.280 392.650 678.370 ;
-        RECT 393.490 677.280 400.930 678.370 ;
-        RECT 401.770 677.280 409.210 678.370 ;
-        RECT 410.050 677.280 417.490 678.370 ;
-        RECT 418.330 677.280 425.770 678.370 ;
-        RECT 426.610 677.280 434.050 678.370 ;
-        RECT 434.890 677.280 442.330 678.370 ;
-        RECT 443.170 677.280 450.610 678.370 ;
-        RECT 451.450 677.280 458.890 678.370 ;
-        RECT 459.730 677.280 467.170 678.370 ;
-        RECT 468.010 677.280 475.450 678.370 ;
-        RECT 476.290 677.280 483.730 678.370 ;
-        RECT 484.570 677.280 492.010 678.370 ;
-        RECT 492.850 677.280 500.290 678.370 ;
-        RECT 501.130 677.280 508.570 678.370 ;
-        RECT 509.410 677.280 516.850 678.370 ;
-        RECT 517.690 677.280 525.130 678.370 ;
-        RECT 525.970 677.280 533.410 678.370 ;
-        RECT 534.250 677.280 541.690 678.370 ;
-        RECT 542.530 677.280 549.970 678.370 ;
-        RECT 550.810 677.280 558.250 678.370 ;
-        RECT 559.090 677.280 566.530 678.370 ;
-        RECT 567.370 677.280 574.810 678.370 ;
-        RECT 575.650 677.280 583.090 678.370 ;
-        RECT 583.930 677.280 591.370 678.370 ;
-        RECT 592.210 677.280 599.650 678.370 ;
-        RECT 600.490 677.280 607.930 678.370 ;
-        RECT 608.770 677.280 616.210 678.370 ;
-        RECT 617.050 677.280 624.490 678.370 ;
-        RECT 625.330 677.280 632.770 678.370 ;
-        RECT 633.610 677.280 641.050 678.370 ;
-        RECT 641.890 677.280 649.330 678.370 ;
-        RECT 650.170 677.280 657.610 678.370 ;
-        RECT 658.450 677.280 664.080 678.370 ;
-        RECT 6.080 4.280 664.080 677.280 ;
+        RECT 6.080 677.375 11.770 678.370 ;
+        RECT 12.610 677.375 20.050 678.370 ;
+        RECT 20.890 677.375 28.330 678.370 ;
+        RECT 29.170 677.375 36.610 678.370 ;
+        RECT 37.450 677.375 44.890 678.370 ;
+        RECT 45.730 677.375 53.170 678.370 ;
+        RECT 54.010 677.375 61.450 678.370 ;
+        RECT 62.290 677.375 69.730 678.370 ;
+        RECT 70.570 677.375 78.010 678.370 ;
+        RECT 78.850 677.375 86.290 678.370 ;
+        RECT 87.130 677.375 94.570 678.370 ;
+        RECT 95.410 677.375 102.850 678.370 ;
+        RECT 103.690 677.375 111.130 678.370 ;
+        RECT 111.970 677.375 119.410 678.370 ;
+        RECT 120.250 677.375 127.690 678.370 ;
+        RECT 128.530 677.375 135.970 678.370 ;
+        RECT 136.810 677.375 144.250 678.370 ;
+        RECT 145.090 677.375 152.530 678.370 ;
+        RECT 153.370 677.375 160.810 678.370 ;
+        RECT 161.650 677.375 169.090 678.370 ;
+        RECT 169.930 677.375 177.370 678.370 ;
+        RECT 178.210 677.375 185.650 678.370 ;
+        RECT 186.490 677.375 193.930 678.370 ;
+        RECT 194.770 677.375 202.210 678.370 ;
+        RECT 203.050 677.375 210.490 678.370 ;
+        RECT 211.330 677.375 218.770 678.370 ;
+        RECT 219.610 677.375 227.050 678.370 ;
+        RECT 227.890 677.375 235.330 678.370 ;
+        RECT 236.170 677.375 243.610 678.370 ;
+        RECT 244.450 677.375 251.890 678.370 ;
+        RECT 252.730 677.375 260.170 678.370 ;
+        RECT 261.010 677.375 268.450 678.370 ;
+        RECT 269.290 677.375 276.730 678.370 ;
+        RECT 277.570 677.375 285.010 678.370 ;
+        RECT 285.850 677.375 293.290 678.370 ;
+        RECT 294.130 677.375 301.570 678.370 ;
+        RECT 302.410 677.375 309.850 678.370 ;
+        RECT 310.690 677.375 318.130 678.370 ;
+        RECT 318.970 677.375 326.410 678.370 ;
+        RECT 327.250 677.375 334.690 678.370 ;
+        RECT 335.530 677.375 342.970 678.370 ;
+        RECT 343.810 677.375 351.250 678.370 ;
+        RECT 352.090 677.375 359.530 678.370 ;
+        RECT 360.370 677.375 367.810 678.370 ;
+        RECT 368.650 677.375 376.090 678.370 ;
+        RECT 376.930 677.375 384.370 678.370 ;
+        RECT 385.210 677.375 392.650 678.370 ;
+        RECT 393.490 677.375 400.930 678.370 ;
+        RECT 401.770 677.375 409.210 678.370 ;
+        RECT 410.050 677.375 417.490 678.370 ;
+        RECT 418.330 677.375 425.770 678.370 ;
+        RECT 426.610 677.375 434.050 678.370 ;
+        RECT 434.890 677.375 442.330 678.370 ;
+        RECT 443.170 677.375 450.610 678.370 ;
+        RECT 451.450 677.375 458.890 678.370 ;
+        RECT 459.730 677.375 467.170 678.370 ;
+        RECT 468.010 677.375 475.450 678.370 ;
+        RECT 476.290 677.375 483.730 678.370 ;
+        RECT 484.570 677.375 492.010 678.370 ;
+        RECT 492.850 677.375 500.290 678.370 ;
+        RECT 501.130 677.375 508.570 678.370 ;
+        RECT 509.410 677.375 516.850 678.370 ;
+        RECT 517.690 677.375 525.130 678.370 ;
+        RECT 525.970 677.375 533.410 678.370 ;
+        RECT 534.250 677.375 541.690 678.370 ;
+        RECT 542.530 677.375 549.970 678.370 ;
+        RECT 550.810 677.375 558.250 678.370 ;
+        RECT 559.090 677.375 566.530 678.370 ;
+        RECT 567.370 677.375 574.810 678.370 ;
+        RECT 575.650 677.375 583.090 678.370 ;
+        RECT 583.930 677.375 591.370 678.370 ;
+        RECT 592.210 677.375 599.650 678.370 ;
+        RECT 600.490 677.375 607.930 678.370 ;
+        RECT 608.770 677.375 616.210 678.370 ;
+        RECT 617.050 677.375 624.490 678.370 ;
+        RECT 625.330 677.375 632.770 678.370 ;
+        RECT 633.610 677.375 641.050 678.370 ;
+        RECT 641.890 677.375 649.330 678.370 ;
+        RECT 650.170 677.375 657.610 678.370 ;
+        RECT 658.450 677.375 664.080 678.370 ;
+        RECT 6.080 4.280 664.080 677.375 ;
         RECT 6.630 3.670 15.910 4.280 ;
         RECT 16.750 3.670 26.030 4.280 ;
         RECT 26.870 3.670 36.150 4.280 ;
@@ -1650,20 +1649,22 @@ MACRO lovers_controller
         RECT 644.190 3.670 653.470 4.280 ;
         RECT 654.310 3.670 663.590 4.280 ;
       LAYER met3 ;
-        RECT 10.185 511.040 666.840 669.285 ;
-        RECT 10.185 509.640 666.440 511.040 ;
-        RECT 10.185 171.040 666.840 509.640 ;
-        RECT 10.185 169.640 666.440 171.040 ;
-        RECT 10.185 10.715 666.840 169.640 ;
+        RECT 21.050 511.040 666.935 669.285 ;
+        RECT 21.050 509.640 666.535 511.040 ;
+        RECT 21.050 171.040 666.935 509.640 ;
+        RECT 21.050 169.640 666.535 171.040 ;
+        RECT 21.050 6.975 666.935 169.640 ;
       LAYER met4 ;
-        RECT 29.735 12.415 97.440 663.505 ;
-        RECT 99.840 12.415 174.240 663.505 ;
-        RECT 176.640 12.415 251.040 663.505 ;
-        RECT 253.440 12.415 327.840 663.505 ;
-        RECT 330.240 12.415 404.640 663.505 ;
-        RECT 407.040 12.415 481.440 663.505 ;
-        RECT 483.840 12.415 558.240 663.505 ;
-        RECT 560.640 12.415 590.345 663.505 ;
+        RECT 23.295 10.240 97.440 663.505 ;
+        RECT 99.840 10.240 174.240 663.505 ;
+        RECT 176.640 10.240 251.040 663.505 ;
+        RECT 253.440 10.240 327.840 663.505 ;
+        RECT 330.240 10.240 404.640 663.505 ;
+        RECT 407.040 10.240 481.440 663.505 ;
+        RECT 483.840 10.240 558.240 663.505 ;
+        RECT 560.640 10.240 635.040 663.505 ;
+        RECT 637.440 10.240 640.945 663.505 ;
+        RECT 23.295 6.975 640.945 10.240 ;
   END
 END lovers_controller
 END LIBRARY
