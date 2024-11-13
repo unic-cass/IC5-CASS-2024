@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1731470415
+timestamp 1731501512
 << nwell >>
 rect 730 650 5670 730
 rect 690 390 5670 650
@@ -162,43 +162,43 @@ rect 3610 -710 3870 -610
 rect 4130 -615 4787 -610
 rect 4093 -710 4787 -615
 use sky130_fd_sc_hd__buf_2  sky130_fd_sc_hd__buf_2_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 728 0 1 -662
 box -38 -48 406 592
 use sky130_fd_sc_hd__dfxtp_1  sky130_fd_sc_hd__dfxtp_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 1488 0 1 -662
 box -38 -48 1510 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 728 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_1
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 1548 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_2
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 2368 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_3
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 3248 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_4
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 4068 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_5
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 4888 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__inv_2  sky130_fd_sc_hd__inv_2_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 3868 0 1 -662
 box -38 -48 314 592
 use sky130_fd_sc_hd__nand2_1  sky130_fd_sc_hd__nand2_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1707688321
+timestamp 1688980957
 transform 1 0 3338 0 1 -662
 box -38 -48 314 592
 << labels >>

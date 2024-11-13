@@ -1,12 +1,12 @@
 ###############################################################################
 # Created by write_sdc
-# Tue Nov 12 21:22:55 2024
+# Wed Nov 13 16:18:05 2024
 ###############################################################################
 current_design vmsu_8bit_top
 ###############################################################################
 # Timing Constraints
 ###############################################################################
-create_clock -name clk -period 25.0000 [get_ports {clk}]
+create_clock -name clk -period 20.0000 [get_ports {clk}]
 set_clock_transition 0.1500 [get_clocks {clk}]
 set_clock_uncertainty 0.2500 clk
 set_propagated_clock [get_clocks {clk}]
@@ -46,7 +46,7 @@ set_input_delay 1.8700 -clock [get_clocks {clk}] -rise -max -add_delay [get_port
 set_input_delay 1.8700 -clock [get_clocks {clk}] -fall -max -add_delay [get_ports {b[7]}]
 set_input_delay 1.8700 -clock [get_clocks {clk}] -rise -max -add_delay [get_ports {control}]
 set_input_delay 1.8700 -clock [get_clocks {clk}] -fall -max -add_delay [get_ports {control}]
-set_input_delay 12.5000 -clock [get_clocks {clk}] -add_delay [get_ports {rst}]
+set_input_delay 10.0000 -clock [get_clocks {clk}] -add_delay [get_ports {rst}]
 set_output_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {p[0]}]
 set_output_delay 1.0000 -clock [get_clocks {clk}] -max -add_delay [get_ports {p[0]}]
 set_output_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {p[10]}]

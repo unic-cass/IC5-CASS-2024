@@ -134,7 +134,8 @@ set_input_transition -min 0.07 [get_ports {phase_in}]
 set_output_delay -max 3.62 -clock [get_clocks {vco_clk}] [get_ports {vco_enb_o}]
 set_output_delay -min 0 -clock [get_clocks {vco_clk}] [get_ports {vco_enb_o}]
 
-set_false_path -from [get_clocks {vco_clock}] -to [get_clocks {clk}]
+set_false_path -from [get_clocks {vco_clk}] -to [get_clocks {clk}]
+set_false_path -from [get_clocks {clk}] -to [get_clocks {vco_clk}]
 
 # Output loads
 set_load 0.19 [all_outputs]

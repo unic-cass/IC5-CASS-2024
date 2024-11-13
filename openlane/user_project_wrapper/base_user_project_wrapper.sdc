@@ -35,6 +35,7 @@ create_clock [get_ports {io_in[16]}] -name ascon_clk -period $::env(CLOCK_PERIOD
 set_false_path -from [get_clock {ascon_clk}] -to [get_clock {clk}]
 set_false_path -from [get_clock {ascon_clk}] -to [get_clock {vco_clk}]
 set_false_path -from [get_clock {vco_clk}] -to [get_clock {clk}]
+set_false_path -from [get_clock {clk}] -to [get_clock {vco_clk}]
 
 # Clock non-idealities
 set_propagated_clock [all_clocks]

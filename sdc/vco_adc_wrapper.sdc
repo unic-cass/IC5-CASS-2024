@@ -1,12 +1,12 @@
 ###############################################################################
 # Created by write_sdc
-# Wed Nov 13 05:01:38 2024
+# Wed Nov 13 20:28:54 2024
 ###############################################################################
 current_design vco_adc_wrapper
 ###############################################################################
 # Timing Constraints
 ###############################################################################
-create_clock -name clk -period 25.0000 [get_ports {wb_clk_i}]
+create_clock -name clk -period 20.0000 [get_ports {wb_clk_i}]
 set_clock_transition 0.1500 [get_clocks {clk}]
 set_clock_uncertainty 0.2500 clk
 set_propagated_clock [get_clocks {clk}]
@@ -18,7 +18,7 @@ set_clock_latency -source -min 4.1100 [get_clocks {vco_clk}]
 set_clock_latency -source -max 4.5700 [get_clocks {vco_clk}]
 set_input_delay 3.1700 -clock [get_clocks {vco_clk}] -rise -max -add_delay [get_ports {phase_in}]
 set_input_delay 3.1700 -clock [get_clocks {vco_clk}] -fall -max -add_delay [get_ports {phase_in}]
-set_input_delay 12.5000 -clock [get_clocks {clk}] -add_delay [get_ports {wb_rst_i}]
+set_input_delay 10.0000 -clock [get_clocks {clk}] -add_delay [get_ports {wb_rst_i}]
 set_input_delay 0.7900 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs_adr_i[0]}]
 set_input_delay 3.8900 -clock [get_clocks {clk}] -max -add_delay [get_ports {wbs_adr_i[0]}]
 set_input_delay 0.7900 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs_adr_i[10]}]
@@ -237,6 +237,9 @@ set_multicycle_path -setup\
     -through [list [get_ports {wbs_ack_o}]\
            [get_ports {wbs_cyc_i}]\
            [get_ports {wbs_stb_i}]] 2
+set_false_path\
+    -from [get_clocks {clk}]\
+    -to [get_clocks {vco_clk}]
 ###############################################################################
 # Environment
 ###############################################################################

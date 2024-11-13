@@ -1,12 +1,12 @@
 ###############################################################################
 # Created by write_sdc
-# Tue Nov 12 22:23:32 2024
+# Wed Nov 13 16:58:19 2024
 ###############################################################################
 current_design ascon_wrapper
 ###############################################################################
 # Timing Constraints
 ###############################################################################
-create_clock -name clk -period 25.0000 [get_ports {clk}]
+create_clock -name clk -period 20.0000 [get_ports {clk}]
 set_clock_transition 0.1500 [get_clocks {clk}]
 set_clock_uncertainty 0.2500 clk
 set_propagated_clock [get_clocks {clk}]

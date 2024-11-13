@@ -5,13 +5,14 @@
         "dir::../../verilog/rtl/defines.v",
         "dir::../../verilog/rtl/lovers_bec/lovers_controller.v"        
     ],
-    "CLOCK_PERIOD": 25,
+    "CLOCK_PERIOD": 20,
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_NET": "lovers_controller.wb_clk_i",
     "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
-    "FP_SIZING": "relative",
-    "PL_TARGET_DENSITY": 0.31,
-    "SYNTH_STRATEGIES": "DELAY 4",
+    "FP_SIZING": "absolute",
+    "DIE_AREA": "0 0 550 550",
+    "PL_TARGET_DENSITY": 0.48,
+    "SYNTH_STRATEGIES": "AREA 3",
     "MAX_TRANSITION_CONSTRAINT": 1.0,
     "MAX_FANOUT_CONSTRAINT": 16,
     "PL_RESIZER_SETUP_SLACK_MARGIN": 0.4,
@@ -19,6 +20,9 @@
     "GLB_RESIZER_HOLD_SLACK_MARGIN": 0.2,
     "PL_RESIZER_HOLD_SLACK_MARGIN": 0.4,
     "ROUTING_CORES": 5,
+    "RUN_KLAYOUT_XOR": 0,
+    "RUN_KLAYOUT_DRC": 0,
+    "RUN_MAGIC_DRC": 0,
     "MAGIC_DEF_LABELS": 0,
     "SYNTH_BUFFERING": 0,
     "VDD_NETS": [
@@ -31,10 +35,9 @@
     "BASE_SDC_FILE": "dir::base_controller.sdc",
     "RUN_CVC": 1,
     "pdk::sky130*": {
-        "FP_CORE_UTIL": 30,
         "RT_MAX_LAYER": "met4",
         "scl::sky130_fd_sc_hd": {
-            "CLOCK_PERIOD": 25
+            "CLOCK_PERIOD": 20
         },
         "scl::sky130_fd_sc_hdll": {
             "CLOCK_PERIOD": 10

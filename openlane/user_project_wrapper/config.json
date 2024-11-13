@@ -125,12 +125,15 @@
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "KLAYOUT_XOR_THREADS": 4,
     "KLAYOUT_DRC_THREADS": 4,
+    "RUN_KLAYOUT_XOR": 0,
+    "RUN_KLAYOUT_DRC": 0,
+    "RUN_MAGIC_DRC": 0,
     "pdk::sky130*": {
         "RT_MAX_LAYER": "met4",
         "DIE_AREA": "0 0 2920 3520",
         "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
         "scl::sky130_fd_sc_hd": {
-            "CLOCK_PERIOD": 25
+            "CLOCK_PERIOD": 20
         },
         "scl::sky130_fd_sc_hdll": {
             "CLOCK_PERIOD": 10
