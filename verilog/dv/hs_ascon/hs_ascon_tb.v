@@ -129,6 +129,9 @@ module hs_ascon_tb;
         #(2*PERIOD)
         rst = 0;
         ctr = 0;
+	   @(posedge clk);
+	   @(posedge clk);
+	   #2 $display("Start Simulation!\n");
         repeat(max) begin
             write($random, ctr, `KEY, `NONCE, `AD, `PT);
             ctr = ctr + 1;

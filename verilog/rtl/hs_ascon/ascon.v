@@ -17,7 +17,7 @@ module Ascon #(
 
     output reg  output_dataxSO,
     output reg  tagxSO,
-    output reg  ascon_readyxSO //
+    output ascon_readyxSO //
 );
     
     reg     [k-1:0]     key; 
