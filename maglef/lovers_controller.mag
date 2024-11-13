@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1731418135
+timestamp 1731448813
 << nwell >>
 rect 1066 132997 133070 133563
 rect 1066 131909 133070 132475
@@ -769,7 +769,7 @@ string FIXED_BBOX 0 0 134187 136331
 string LEFclass BLOCK
 string LEFview TRUE
 string GDS_END 39135896
-string GDS_FILE /home/admin/projects/IC5-CASS-2024/openlane/lovers_controller/runs/24_11_12_19_58/results/signoff/lovers_controller.magic.gds
+string GDS_FILE /home/admin/projects/IC5-CASS-2024/openlane/lovers_controller/runs/24_11_13_04_26/results/signoff/lovers_controller.magic.gds
 string GDS_START 653768
 << end >>
 
