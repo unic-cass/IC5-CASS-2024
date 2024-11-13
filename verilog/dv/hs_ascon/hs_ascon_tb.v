@@ -120,7 +120,7 @@ module ascon_tb;
     endtask
 	
 	initial begin
-		$dumpfile("ascon.vcd");
+		$dumpfile("hs_ascon.vcd");
 		$dumpvars(0, ascon_tb);
 		#15230
 		$display("Start encryption! at %d", $time);
@@ -264,7 +264,7 @@ module ascon_tb;
 	);
 
 	spiflash #(
-		.FILENAME("ascon.hex")
+		.FILENAME("hs_ascon.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),
