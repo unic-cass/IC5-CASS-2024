@@ -27,5 +27,20 @@
 # VMSU 8 bit Projects
 -v $(USER_PROJECT_VERILOG)/rtl/vmsu_8bit/vmsu_8bit_top.v
 
+# HS ASCON
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/ascon_core.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/ascon.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/ascon_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/permutation/ascon_permutation.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/permutation/linear_layer.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/permutation/roundconstant.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/permutation/substitution_layer.v
+-v $(USER_PROJECT_VERILOG)/rtl/hs_ascon/roundcounter.v
 
- 
+#vco_adc2
+-v $(USER_PROJECT_VERILOG)/rtl/vco_adc2/vco_adc2.v
+-v $(USER_PROJECT_VERILOG)/rtl/vco_adc2/vco_adc.v
+-v $(USER_PROJECT_VERILOG)/rtl/vco_adc2/sinc_sync.v
+-v $(USER_PROJECT_VERILOG)/rtl/vco_adc2/async_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/vco_adc2/vco_adc_fifo.v
+-v $(USER_PROJECT_VERILOG)/rtl/vco_adc2/vco_adc_wrapper.v

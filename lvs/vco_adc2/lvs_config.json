@@ -15,13 +15,12 @@
 	    ""
 	],
 	"LVS_NOFLATTEN": [
-		""
-	],
-	"LVS_IGNORE": [
 	    "sky130_fd_sc_hd__dfstp_1",
-	    "sky130_fd_sc_hd__dfxtp_1",
 	    "sky130_fd_sc_hd__dfxbp_2",
 	    "sky130_fd_pr__res_xhigh_po_0p35"
+	],
+	"LVS_IGNORE": [
+		""
 	],
 	"LVS_SPICE_FILES": [
 	    "$UPRJ_ROOT/spi/lvs/vco_adc2.spice"

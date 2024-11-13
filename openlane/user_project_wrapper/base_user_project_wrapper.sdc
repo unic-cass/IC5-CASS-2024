@@ -28,16 +28,22 @@ if { ![info exists ::env(SYNTH_CLK_DRIVING_CELL_PIN)] } {
 	set ::env(SYNTH_CLK_DRIVING_CELL_PIN) $::env(SYNTH_DRIVING_CELL_PIN)
 }
 
+create_clock [get_ports {user_clock2}] -name vco_clk -period 25
+
 create_clock [get_ports {io_in[16]}] -name ascon_clk -period $::env(CLOCK_PERIOD)
-puts "\[INFO\]: Creating clock {ascon_clk} for port {io_in[16]} with period: $::env(CLOCK_PERIOD)"
 
 set_false_path -from [get_clock {ascon_clk}] -to [get_clock {clk}]
+set_false_path -from [get_clock {ascon_clk}] -to [get_clock {vco_clk}]
+set_false_path -from [get_clock {vco_clk}] -to [get_clock {clk}]
 
 # Clock non-idealities
 set_propagated_clock [all_clocks]
 set_clock_uncertainty $::env(SYNTH_CLOCK_UNCERTAINTY) [get_clocks {clk}]
+set_clock_uncertainty $::env(SYNTH_CLOCK_UNCERTAINTY) [get_clocks {vco_clk}]
 puts "\[INFO\]: Setting clock uncertainity to: $::env(SYNTH_CLOCK_UNCERTAINTY)"
 set_clock_transition $::env(SYNTH_CLOCK_TRANSITION) [get_clocks {clk}]
+set_clock_transition $::env(SYNTH_CLOCK_TRANSITION) [get_clocks {vco_clk}]
+set_clock_transition $::env(SYNTH_CLOCK_TRANSITION) [get_clocks {ascon_clk}]
 puts "\[INFO\]: Setting clock transition to: $::env(SYNTH_CLOCK_TRANSITION)"
 
 # Maximum transition time for the design nets
@@ -75,12 +81,18 @@ set clk_max_latency 5.57
 set clk_min_latency 4.65
 set_clock_latency -source -max $clk_max_latency [get_clocks {clk}]
 set_clock_latency -source -min $clk_min_latency [get_clocks {clk}]
+set_clock_latency -source -max $usr_clk_max_latency [get_clocks {vco_clk}]
+set_clock_latency -source -min $usr_clk_min_latency [get_clocks {vco_clk}]
+set_clock_latency -source -max $clk_max_latency [get_clocks {ascon_clk}]
+set_clock_latency -source -min $clk_min_latency [get_clocks {ascon_clk}]
 puts "\[INFO\]: Setting clock latency range: $clk_min_latency : $clk_max_latency"
 
 # Clock input Transition
 set usr_clk_tran 0.13
 set clk_tran 0.61
 set_input_transition $clk_tran [get_ports $clk_input]
+set_input_transition $usr_clk_tran [get_ports {user_clock2}]
+set_input_transition $usr_clk_tran [get_ports {io_in[16]}]
 puts "\[INFO\]: Setting clock transition: $clk_tran"
 
 # Input delays

@@ -60,7 +60,7 @@ module vco_adc_wrapper #(
     input [31:0] wbs_adr_i,
     output wbs_ack_o,
     output [31:0] wbs_dat_o,
-
+    input user_clock2,
     // Logic Analyzer Signals
     // input  [127:0] la_data_in,
     // output [127:0] la_data_out,
@@ -97,11 +97,13 @@ module vco_adc_wrapper #(
    reg 		 empty_reg;
    reg 		 ren_1d_reg, ren_2d_reg, ren_3d_reg;
    reg  	 vco_en_reg;
-   reg [10:0] 	 num_samples_reg;
-   reg 		 io_en_reg;
+   reg [11:0] 	 num_samples_reg;
+   reg [3:0] 	 shift_factor_reg;
    reg [31:0]	 data_reg;
    reg		 div_2_reg;
    reg		 div_2_1d_reg;
+   reg 		 capture_mode_reg;
+ 		 
 
    wire		 full, empty, fifo_ren, fifo_wen;
    
@@ -112,8 +114,16 @@ module vco_adc_wrapper #(
    reg 			  ren_reg;
    wire 		  rst;
    wire 		  slave_sel;
-   wire			  adc_dvalid_i;
+   wire			  adc_dvalid_i; 		  
    wire [31:0]		  adc_dat_i;
+
+   wire 		  async_fifo_full;
+   wire 		  vco_en_sync;
+   wire 		  async_fifo_empty;
+   wire [31:0] 		  async_fifo_data;
+   reg [15:0] 		  async_fifo_data_shifted;
+   reg 			  wrst_n_reg, rrst_n_reg;
+
    // synthesis translate_off
    integer 		  rdat_file;
    integer 		  wdat_file;
@@ -160,11 +170,19 @@ module vco_adc_wrapper #(
      end
    end
 
+   always @(posedge user_clock2) begin
+      wrst_n_reg <= ~rst;
+   end
+
+   always @(posedge wb_clk_i) begin
+      rrst_n_reg <= ~rst;
+   end
+
    always @(posedge wb_clk_i) begin
       if (rst == 1'b1) begin
 	 num_data_reg <= {32{1'b0}};
       end else begin
-	 if (adc_dvalid_i)
+	 if (ren_reg)
 	   num_data_reg <= num_data_reg + 1;
       end
    end
@@ -173,14 +191,45 @@ module vco_adc_wrapper #(
       if (rst == 1'b1) begin
 	 div_2_reg <= 1'b0;
 	 div_2_1d_reg <= 1'b0;
+	 ren_reg <= 1'b0;
       end else begin
-	 if(adc_dvalid_i) div_2_reg <= ~div_2_reg;
+
+	 if(ren_reg) div_2_reg <= ~div_2_reg;
+
 	 div_2_1d_reg <= div_2_reg;
+
+	 // if(async_fifo_empty == 1'b0 && ren_1d_reg == 1'b0) ren_reg <= 1'b1; else ren_reg <= 1'b0;
+	 // ren_1d_reg <= ren_reg;
+	 if (ren_reg) ren_reg <= 1'b0;
+	 else if (async_fifo_empty == 1'b0) ren_reg <= 1'b1;
+	 
       end
 
-      if (adc_dvalid_i)
-	data_reg <= {data_reg[15:0], adc_dat_i[26:11]};
+      if (ren_reg)
+	data_reg <= {data_reg[15:0], async_fifo_data_shifted};
    end
+
+   // assign async_fifo_data_shifted = async_fifo_data[25:10];
+   always @(*)
+     case (shift_factor_reg)
+       4'h0: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[15:1]};
+       4'h1: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[16:2]};
+       4'h2: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[17:3]};
+       4'h3: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[18:4]};
+       4'h4: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[19:5]};
+       4'h5: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[20:6]};
+       4'h6: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[21:7]};
+       4'h7: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[22:8]};
+       4'h8: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[23:9]};
+       4'h9: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[24:10]};
+       4'ha: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[25:11]};
+       4'hb: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[26:12]};
+       4'hc: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[27:13]};
+       4'hd: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[28:14]};
+       4'he: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[29:15]};
+       4'hf: async_fifo_data_shifted = async_fifo_data[31:16];
+       default: async_fifo_data_shifted = {async_fifo_data[31], async_fifo_data[15:1]};
+     endcase
    
    always @(posedge wb_clk_i) begin
       if (rst == 1'b1) begin
@@ -199,17 +248,17 @@ module vco_adc_wrapper #(
 	 ena_reg		<= 3'b0;
 	 vco_en_reg		<= 3'h0;
 	 num_samples_reg	<= 0;
-	 adc_sel_reg		<= 2'h0;
-	 io_en_reg		<= 1'b0;
+	 capture_mode_reg		<= 1'b0;
+	 shift_factor_reg <= 4'b0;
       end else begin
 	 if (slave_sel && wen_w && wbs_adr_i[7:0] == 8'h00) begin
-	    ena_reg		<= wbs_dat_i[31:29];
-	    vco_en_reg		<= wbs_dat_i[28:26];
-	    adc_sel_reg         <= wbs_dat_i[25:24];
-	    io_en_reg <= wbs_dat_i[21];
-	    num_samples_reg     <= wbs_dat_i[20:10];
+	    shift_factor_reg <= wbs_dat_i[28:25];
+	    ena_reg		<= wbs_dat_i[24];
+	    vco_en_reg		<= wbs_dat_i[23];
+	    capture_mode_reg <= wbs_dat_i[22];
+	    num_samples_reg     <= wbs_dat_i[21:10];
 	    oversample_reg	<= wbs_dat_i[9:0];
-	 end else if (num_data_reg == num_samples_reg) begin
+	 end else if (num_data_reg == num_samples_reg && capture_mode_reg == 1'b0) begin
 	    ena_reg <= 1'b0;
 	    vco_en_reg <= 1'b0;
 	 end
@@ -218,9 +267,8 @@ module vco_adc_wrapper #(
 
    always @* begin
       case (wbs_adr_i[7:0]) 
-	`REG_MPRJ_VCO_CONFIG: data_o <= {ena_reg, vco_en_reg, adc_sel_reg,
-					 1'b0, 1'b0,
-					 io_en_reg, num_samples_reg,
+	`REG_MPRJ_VCO_CONFIG: data_o <= {ena_reg, vco_en_reg,
+					 capture_mode_reg, num_samples_reg,
 					 oversample_reg};
 	`REG_MPRJ_FIFO_DATA:  data_o <= fifo_out_w;
 	`REG_MPRJ_STATUS:     data_o <= {30'h0, status_reg};
@@ -251,9 +299,20 @@ module vco_adc_wrapper #(
       .full_o(full),
       .empty_o(empty));
 
+  async_fifo as_fifo
+    (.wclk(user_clock2),
+     .wrst_n(wrst_n_reg),
+     .rclk(wb_clk_i),
+     .rrst_n(rrst_n_reg),
+     .w_en(adc_dvalid_i),
+     .r_en(ren_reg),
+     .data_in(adc_dat_i),
+     .data_out(async_fifo_data),
+     .full(async_fifo_full),
+     .empty(async_fifo_empty));
 
    vco_adc vco_adc_0
-     (.clk(wb_clk_i),
+     (.clk(user_clock2),
       .rst(rst),
       .oversample_in(oversample_reg),
       .enable_in(ena_reg),
@@ -261,13 +320,18 @@ module vco_adc_wrapper #(
       .data_out(adc_dat_i),
       .data_valid_out(adc_dvalid_i)
       );
+
+   aucohl_sync vco_enb_sync
+     (.clk(user_clock2),
+      .in(vco_en_reg),
+      .out(vco_en_sync));
    
    // IO
    // assign io_out    = fifo_out_w;
    // assign io_oeb = {(`MPRJ_IO_PADS-1){~io_en_reg}};
    //assign irq  = 3'b000;
    assign wbs_dat_o = data_o;
-   assign vco_enb_o = ~vco_en_reg;
+   assign vco_enb_o = ~vco_en_sync;
 
 `ifdef FUNCTIONAL
    // this is for debug only
@@ -277,7 +341,7 @@ module vco_adc_wrapper #(
    end
 
    always @(posedge wb_clk_i) begin
-      if (full_reg == 1'b1 && adc_dvalid_i == 1'b1)
+      if (full_reg == 1'b1 && fifo_wen == 1'b1)
 	$display("Error: Fifo is full but a write is requested: %d", num_data_reg);
    end
 
@@ -287,7 +351,7 @@ module vco_adc_wrapper #(
    end
 
    always @(posedge wb_clk_i) begin
-      if (adc_dvalid_i && !full_reg) begin
+      if (fifo_wen && !full_reg) begin
 	 $display("Fifo write: %08X", data_reg);
 	 $fwrite(wdat_file, "%08X\n", data_reg);
       end
@@ -298,5 +362,22 @@ module vco_adc_wrapper #(
       
    end
 `endif
+endmodule // vco_adc_wrapper
+
+module aucohl_sync #(parameter NUM_STAGES = 2) (
+    input wire clk,
+    input wire in,
+    output wire out
+);
+
+    reg [NUM_STAGES-1:0] sync;
+
+    always @(posedge clk)
+        sync <= {sync[NUM_STAGES-2:0], in};
+
+    assign out = sync[NUM_STAGES-1];
+
 endmodule
+
 `default_nettype wire
+

@@ -173,71 +173,39 @@ module user_project_wrapper #(
     .io_out(io_out[19:17]),
     .io_oeb({io_oeb[19:9]}));
 
-//       vco_adc_wrapper vco_adc_wrapper
-// 	(
-// `ifdef USE_POWER_PINS
-//          .vccd1(vccd1),       // User area 1 1.8V power
-//          .vssd1(vssd1),       // User area 1 digital ground
-// `endif
-//          .wb_clk_i(wb_clk_i),
-//          .wb_rst_i(wb_rst_i),
-//            // MGMT SoC Wishbone Slave
-//          .wbs_cyc_i(wbs_cyc_i),
-//          .wbs_stb_i(wbs_stb_i),
-//          .wbs_we_i(wbs_we_i),
-//          .wbs_sel_i(wbs_sel_i),
-//          .wbs_adr_i(wbs_adr_i),
-//          .wbs_dat_i(wbs_dat_i),
-//          .wbs_ack_o(wbs_ack_o),
-//          .wbs_dat_o(wbs_dat_o),
-//          .phase_in(phase0),
-//          .vco_enb_o(vco_enb));
+      vco_adc_wrapper vco_adc_wrapper
+	(
+`ifdef USE_POWER_PINS
+         .vccd1(vccd1),       // User area 1 1.8V power
+         .vssd1(vssd1),       // User area 1 digital ground
+`endif
+         .wb_clk_i(wb_clk_i),
+         .wb_rst_i(wb_rst_i),
+	 .user_clock2(user_clock2),
+           // MGMT SoC Wishbone Slave
+         .wbs_cyc_i(wbs_cyc_i),
+         .wbs_stb_i(wbs_stb_i),
+         .wbs_we_i(wbs_we_i),
+         .wbs_sel_i(wbs_sel_i),
+         .wbs_adr_i(wbs_adr_i),
+         .wbs_dat_i(wbs_dat_i),
+         .wbs_ack_o(wbs_ack_o),
+         .wbs_dat_o(wbs_dat_o),
+         .phase_in(phase0),
+         .vco_enb_o(vco_enb));
 
-//    vco_adc2 vco_adc2
-//      (
-// `ifdef USE_POWER_PINS
-//       .vdda1(vdda1),
-//       .vssa1(vssa1),
-// `endif
-//       .clk(wb_clk_i),
-//       .enable_in(vco_enb),
-//       .analog_in(analog_io[16]),
-//       .vbias_34(analog_io[18]),
-//       .vbias_12(analog_io[17]),
-//       .quantizer_out(phase0));
-
-//       vco_adc_wrapper vco_adc_wrapper
-// 	(
-// `ifdef USE_POWER_PINS
-//          .vccd1(vccd1),       // User area 1 1.8V power
-//          .vssd1(vssd1),       // User area 1 digital ground
-// `endif
-//          .wb_clk_i(wb_clk_i),
-//          .wb_rst_i(wb_rst_i),
-//            // MGMT SoC Wishbone Slave
-//          .wbs_cyc_i(wbs_cyc_i),
-//          .wbs_stb_i(wbs_stb_i),
-//          .wbs_we_i(wbs_we_i),
-//          .wbs_sel_i(wbs_sel_i),
-//          .wbs_adr_i(wbs_adr_i),
-//          .wbs_dat_i(wbs_dat_i),
-//          .wbs_ack_o(wbs_ack_o),
-//          .wbs_dat_o(wbs_dat_o),
-//          .phase_in(phase0),
-//          .vco_enb_o(vco_enb));
-
-//    vco_adc2 vco_adc2
-//      (
-// `ifdef USE_POWER_PINS
-//       .vdda1(vdda1),
-//       .vssa1(vssa1),
-// `endif
-//       .clk(wb_clk_i),
-//       .enable_in(vco_enb),
-//       .analog_in(analog_io[16]),
-//       .vbias_34(analog_io[18]),
-//       .vbias_12(analog_io[17]),
-//       .quantizer_out(phase0));
+   vco_adc2 vco_adc2
+     (
+`ifdef USE_POWER_PINS
+      .vdda1(vdda1),
+      .vssa1(vssa1),
+`endif
+      .clk(user_clock2),
+      .enable_in(vco_enb),
+      .analog_in(analog_io[16]),
+      .vbias_34(analog_io[18]),
+      .vbias_12(analog_io[17]),
+      .quantizer_out(phase0));
 
 endmodule	// user_project_wrapper
 

@@ -61,7 +61,7 @@ module vco_adc2
       if (rst == 1'b1) begin
 	 counter_reg <= 19'h0;
       end else begin
-	 if (enable_in == 1'b1) begin
+	 if (enable_in == 1'b0) begin
 	    if (counter_reg == 287976)
 	      counter_reg <= 19'h0;
 	    else
@@ -70,7 +70,7 @@ module vco_adc2
       end
    end
 
-   assign quantizer_out = (enable_in == 1'b1) ? vco_val[counter_reg] : 0;
+   assign quantizer_out = (enable_in == 1'b0) ? vco_val[counter_reg] : 0;
 `endif
 endmodule // vco
 

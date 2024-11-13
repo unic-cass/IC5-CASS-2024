@@ -1,6 +1,6 @@
 magic
 tech sky130A
-timestamp 1730519794
+timestamp 1731473513
 << locali >>
 rect 1459 920 1604 960
 rect 3036 920 3197 960
@@ -30,22 +30,16 @@ rect 4575 925 4625 950
 rect 4650 925 5240 950
 rect 4540 920 5240 925
 rect -250 670 0 710
-rect 1540 670 1650 710
-rect 3100 670 3210 710
 rect 4680 670 5090 710
 rect -250 -850 -200 670
 rect -100 300 0 340
-rect 1540 300 1650 340
-rect 3100 300 3210 340
 rect 4675 300 4940 340
 rect -100 -480 -50 300
 rect 4890 -480 4940 300
 rect -100 -520 1445 -480
-rect 2915 -520 3025 -480
 rect 4560 -520 4940 -480
 rect 5040 -850 5090 670
 rect -250 -890 1445 -850
-rect 2915 -890 3025 -850
 rect 4530 -890 5090 -850
 rect 5190 -1100 5240 920
 rect 4425 -1105 5240 -1100
@@ -74,24 +68,8 @@ timestamp 1730452893
 transform -1 0 4565 0 -1 -270
 box 0 0 1560 870
 << labels >>
-rlabel metal1 1580 340 1580 340 1 pn[0]
-port 1 n
-rlabel metal1 3155 340 3155 340 1 pn[1]
-port 2 n
-rlabel metal1 4710 340 4710 340 1 pn[2]
-port 3 n
-rlabel metal1 2965 -480 2965 -480 1 pn[3]
-port 4 n
 rlabel metal1 1405 -480 1405 -480 1 pn[4]
 port 5 n
-rlabel metal1 1590 710 1590 710 1 p[0]
-port 6 n
-rlabel metal1 3150 710 3150 710 1 p[1]
-port 7 n
-rlabel metal1 4735 710 4735 710 1 p[2]
-port 8 n
-rlabel metal1 2985 -850 2985 -850 1 p[3]
-port 9 n
 rlabel metal1 1400 -850 1400 -850 1 p[4]
 port 10 n
 rlabel metal1 4740 960 4740 960 1 VDDA

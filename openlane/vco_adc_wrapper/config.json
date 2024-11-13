@@ -4,6 +4,7 @@
     "VERILOG_FILES": [
         "dir::../../verilog/rtl/defines.v",
         "dir::../../verilog/rtl/vco_adc2/sinc_sync.v",
+        "dir::../../verilog/rtl/vco_adc2/async_fifo.v",
         "dir::../../verilog/rtl/vco_adc2/vco_adc_fifo.v",
         "dir::../../verilog/rtl/vco_adc2/vco_adc.v",
         "dir::../../verilog/rtl/vco_adc2/vco_adc_wrapper.v"

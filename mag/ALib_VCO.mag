@@ -1,6 +1,6 @@
 magic
 tech sky130A
-timestamp 1731037740
+timestamp 1731473600
 << nwell >>
 rect 2765 1450 2885 1610
 << pwell >>
@@ -21,15 +21,11 @@ rect 2830 1370 2850 1390
 rect 2830 1520 2850 1540
 << locali >>
 rect 390 3475 830 3515
-rect 3485 1945 3530 1950
-rect 3445 1905 3530 1945
-rect 3485 1900 3530 1905
-rect 4110 1925 4460 1950
-rect 4110 1905 4375 1925
+rect 3395 1925 4460 1950
+rect 3395 1905 4375 1925
 rect 4395 1905 4425 1925
 rect 4445 1905 4460 1925
-rect 4110 1880 4460 1905
-rect 3425 1740 3520 1800
+rect 3395 1880 4460 1905
 rect 2820 1540 2860 1555
 rect 2820 1520 2830 1540
 rect 2850 1520 2860 1540
@@ -84,9 +80,8 @@ rect 4360 1905 4375 1925
 rect 4395 1905 4425 1925
 rect 4445 1905 4460 1925
 rect 4360 1880 4460 1905
-rect 4200 1795 4250 1860
-rect 4115 1740 4250 1795
-rect 4200 1710 4250 1740
+rect 4200 1710 4250 1860
+rect 4270 1535 4300 1565
 rect 2820 1370 2830 1390
 rect 2850 1370 3165 1390
 rect 2820 1360 3165 1370
@@ -95,20 +90,12 @@ rect 3115 1325 3165 1360
 rect 2785 1295 3165 1325
 rect 2955 1075 3300 1125
 rect 2970 440 3320 490
-use sky130_fd_pr__res_generic_po_DKCPUZ  sky130_fd_pr__res_generic_po_DKCPUZ_0
-timestamp 1725958087
-transform 0 -1 3820 1 0 1924
-box -24 -315 24 315
-use sky130_fd_pr__res_generic_po_DKCPUZ  sky130_fd_pr__res_generic_po_DKCPUZ_1
-timestamp 1725958087
-transform 0 -1 3820 1 0 1769
-box -24 -315 24 315
 use sky130_fd_sc_hd__einvp_1  sky130_fd_sc_hd__einvp_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1688980957
+timestamp 1707688321
 transform 1 0 2564 0 1 1319
 box -19 -24 249 296
 use x5s_cc_osc  x5s_cc_osc_0
-timestamp 1730447269
+timestamp 1731473449
 transform 1 0 300 0 1 2100
 box -300 -1950 10020 1415
 << labels >>
@@ -118,10 +105,9 @@ rlabel metal1 3065 490 3065 490 1 p[4]
 port 3 n
 rlabel locali 575 3515 575 3515 1 VDDA
 port 4 n
-rlabel metal1 4180 1795 4180 1795 1 GND
-port 5 n
 rlabel metal1 3155 1125 3155 1125 1 pn[4]
-rlabel locali 3470 1945 3470 1945 1 Vctrl
 rlabel metal1 4430 1950 4430 1950 1 Anlg_in
 port 1 n
+rlabel metal1 4285 1565 4285 1565 1 GND
+port 5 n
 << end >>
