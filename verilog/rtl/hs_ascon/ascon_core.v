@@ -5,7 +5,7 @@ module AsconCore#(
     parameter a = 12,             // Initialization round no.
     parameter b = 6,              // Intermediate round no.
     parameter l = 40,            // Length of associated data
-    parameter y = 40             // Length of Plain Text
+    parameter y = 104             // Length of Plain Text
 )(
     input           clk,
     input           rst,
