@@ -12,7 +12,7 @@
 `define PT 'h6173636f6e2d756e6963617373
 `define CT 'h18490112f8d5867a830748390b
 
-module hs_ascon_tb;
+module ascon_tb;
 	parameter PERIOD = 20;
 	parameter max = (`k>=`y && `k>=`l)? `k: ((`y>=`l)? `y: `l);
 	reg clock;
@@ -120,8 +120,8 @@ module hs_ascon_tb;
     endtask
 	
 	initial begin
-		$dumpfile("hs_ascon.vcd");
-		$dumpvars(0, hs_ascon_tb);
+		$dumpfile("ascon.vcd");
+		$dumpvars(0, ascon_tb);
 		#15230
 		$display("Start encryption! at %d", $time);
         decrypt = 0;
@@ -264,7 +264,7 @@ module hs_ascon_tb;
 	);
 
 	spiflash #(
-		.FILENAME("hs_ascon.hex")
+		.FILENAME("ascon.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),

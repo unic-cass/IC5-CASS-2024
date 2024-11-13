@@ -11,7 +11,7 @@ module roundconstant (
     always @(*) begin
         if(rounds == 6)
             out_buf = x2 ^ (8'h96 - (ctr-1) * 15);
-        else if(rounds == 12)
+        else if(rounds == 8)
             out_buf = x2 ^ (8'hb4 - (ctr-1) * 15);
         else 
             out_buf = x2 ^ (8'hf0 - (ctr-1) * 15);
