@@ -128,6 +128,8 @@
     "RUN_KLAYOUT_XOR": 0,
     "RUN_KLAYOUT_DRC": 0,
     "RUN_MAGIC_DRC": 0,
+    "DECAP_CELL": "sky130_fd_sc_hd__decap_3",
+    "FILL_CELL": "sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1",
     "pdk::sky130*": {
         "RT_MAX_LAYER": "met4",
         "DIE_AREA": "0 0 2920 3520",
