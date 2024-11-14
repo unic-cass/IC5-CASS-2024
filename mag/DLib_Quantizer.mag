@@ -1,39 +1,50 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1731501512
+timestamp 1731569169
 << nwell >>
 rect 730 650 5670 730
 rect 690 390 5670 650
-rect 920 -120 4190 -70
-rect 690 -410 4190 -120
+rect 420 -120 710 -80
+rect 920 -120 4440 -70
+rect 420 -410 4440 -120
 << pwell >>
 rect 690 150 5670 350
-rect 690 -650 4190 -450
+rect 420 -650 4440 -450
 << psubdiff >>
 rect 3140 258 3202 288
 rect 3140 224 3156 258
 rect 3190 224 3202 258
 rect 3140 188 3202 224
-rect 1130 -520 1210 -490
-rect 1130 -560 1150 -520
-rect 1190 -560 1210 -520
-rect 1130 -590 1210 -560
+rect 500 -510 600 -490
+rect 500 -550 530 -510
+rect 570 -550 600 -510
+rect 500 -570 600 -550
+rect 4270 -500 4370 -480
+rect 4270 -540 4300 -500
+rect 4340 -540 4370 -500
+rect 4270 -560 4370 -540
 << nsubdiff >>
 rect 3150 570 3230 600
 rect 3150 530 3170 570
 rect 3210 530 3230 570
 rect 3150 500 3230 530
-rect 1180 -230 1260 -200
-rect 1180 -270 1200 -230
-rect 1240 -270 1260 -230
-rect 1180 -300 1260 -270
+rect 4270 -130 4370 -110
+rect 4270 -170 4300 -130
+rect 4340 -170 4370 -130
+rect 4270 -190 4370 -170
+rect 490 -230 590 -210
+rect 490 -270 520 -230
+rect 560 -270 590 -230
+rect 490 -290 590 -270
 << psubdiffcont >>
 rect 3156 224 3190 258
-rect 1150 -560 1190 -520
+rect 530 -550 570 -510
+rect 4300 -540 4340 -500
 << nsubdiffcont >>
 rect 3170 530 3210 570
-rect 1200 -270 1240 -230
+rect 4300 -170 4340 -130
+rect 520 -270 560 -230
 << locali >>
 rect 730 680 810 730
 rect 3150 570 3230 600
@@ -53,30 +64,40 @@ rect 3140 188 3202 224
 rect 5820 50 5890 250
 rect 3700 -20 5890 50
 rect 1020 -110 1570 -70
-rect 1180 -230 1260 -110
-rect 1180 -270 1200 -230
-rect 1240 -270 1260 -230
-rect 1180 -300 1260 -270
+rect 490 -230 590 -210
+rect 490 -270 520 -230
+rect 560 -270 590 -230
+rect 490 -290 590 -270
 rect 3700 -400 3770 -20
+rect 4270 -130 4370 -110
+rect 4270 -170 4300 -130
+rect 4340 -170 4370 -130
+rect 4270 -190 4370 -170
 rect 2930 -450 3420 -400
 rect 3590 -450 3770 -400
-rect 1130 -520 1210 -490
-rect 1130 -560 1150 -520
-rect 1190 -560 1210 -520
-rect 1130 -590 1210 -560
+rect 500 -510 600 -490
+rect 500 -550 530 -510
+rect 570 -550 600 -510
+rect 4270 -500 4370 -480
+rect 500 -570 600 -550
+rect 4270 -540 4300 -500
+rect 4340 -540 4370 -500
+rect 4270 -560 4370 -540
 << viali >>
 rect 3170 530 3210 570
 rect 810 368 844 402
 rect 3156 224 3190 258
+rect 520 -270 560 -230
 rect 948 -286 982 -252
-rect 1200 -270 1240 -230
+rect 4300 -170 4340 -130
 rect 3990 -290 4030 -250
 rect 760 -450 800 -410
 rect 1516 -444 1550 -410
 rect 3900 -440 3940 -400
 rect 1768 -500 1802 -466
-rect 1150 -560 1190 -520
+rect 530 -550 570 -510
 rect 3520 -530 3560 -490
+rect 4300 -540 4340 -500
 << metal1 >>
 rect 190 630 750 730
 rect 1460 630 1560 730
@@ -106,14 +127,14 @@ rect 3100 90 3250 190
 rect 3980 90 4070 190
 rect 440 -30 1410 40
 rect 190 -170 750 -70
+rect 490 -230 590 -170
+rect 490 -270 520 -230
+rect 560 -270 590 -230
+rect 490 -290 590 -270
 rect 934 -252 994 -202
 rect 934 -286 948 -252
 rect 982 -286 994 -252
 rect 934 -372 994 -286
-rect 1180 -230 1260 -200
-rect 1180 -270 1200 -230
-rect 1240 -270 1260 -230
-rect 1180 -300 1260 -270
 rect 740 -390 820 -380
 rect 440 -410 820 -390
 rect 440 -450 760 -410
@@ -123,6 +144,11 @@ rect 936 -392 994 -372
 rect 1340 -330 1410 -30
 rect 2960 -170 3340 -70
 rect 3610 -170 3870 -70
+rect 4140 -130 4370 -110
+rect 4140 -160 4300 -130
+rect 4270 -170 4300 -160
+rect 4340 -170 4370 -130
+rect 4270 -190 4370 -170
 rect 3970 -250 4050 -220
 rect 3970 -290 3990 -250
 rect 4030 -290 4370 -250
@@ -131,10 +157,10 @@ rect 1340 -338 1570 -330
 rect 936 -452 1312 -392
 rect 1340 -400 1572 -338
 rect 740 -470 820 -460
-rect 1130 -520 1210 -490
-rect 1130 -560 1150 -520
-rect 1190 -560 1210 -520
-rect 1130 -610 1210 -560
+rect 500 -510 600 -490
+rect 500 -550 530 -510
+rect 570 -550 600 -510
+rect 500 -620 600 -550
 rect 1266 -510 1312 -452
 rect 1502 -410 1572 -400
 rect 1502 -444 1516 -410
@@ -154,51 +180,56 @@ rect 3460 -490 3870 -480
 rect 3460 -530 3520 -490
 rect 3560 -530 3870 -490
 rect 3460 -540 3870 -530
+rect 4270 -500 4370 -480
+rect 4270 -540 4300 -500
+rect 4340 -540 4370 -500
+rect 4270 -610 4370 -540
 rect 4692 -610 4787 147
 rect 4800 90 4890 190
+rect 500 -710 740 -620
 rect 1090 -710 1490 -610
 rect 2960 -710 3340 -610
 rect 3610 -710 3870 -610
 rect 4130 -615 4787 -610
 rect 4093 -710 4787 -615
 use sky130_fd_sc_hd__buf_2  sky130_fd_sc_hd__buf_2_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 728 0 1 -662
 box -38 -48 406 592
 use sky130_fd_sc_hd__dfxtp_1  sky130_fd_sc_hd__dfxtp_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 1488 0 1 -662
 box -38 -48 1510 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 728 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_1
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 1548 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_2
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 2368 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_3
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 3248 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_4
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 4068 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__dlygate4sd3_1  sky130_fd_sc_hd__dlygate4sd3_1_5
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 4888 0 1 138
 box -38 -48 774 592
 use sky130_fd_sc_hd__inv_2  sky130_fd_sc_hd__inv_2_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 3868 0 1 -662
 box -38 -48 314 592
 use sky130_fd_sc_hd__nand2_1  sky130_fd_sc_hd__nand2_1_0 $PDKPATH/libs.ref/sky130_fd_sc_hd/mag
-timestamp 1688980957
+timestamp 1723858470
 transform 1 0 3338 0 1 -662
 box -38 -48 314 592
 << labels >>

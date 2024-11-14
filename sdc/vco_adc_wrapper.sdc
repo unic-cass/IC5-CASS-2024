@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Wed Nov 13 20:28:54 2024
+# Thu Nov 14 06:45:34 2024
 ###############################################################################
 current_design vco_adc_wrapper
 ###############################################################################
@@ -161,6 +161,12 @@ set_input_delay 1.8600 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs
 set_input_delay 4.1300 -clock [get_clocks {clk}] -max -add_delay [get_ports {wbs_stb_i}]
 set_input_delay 1.6500 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs_we_i}]
 set_input_delay 3.7400 -clock [get_clocks {clk}] -max -add_delay [get_ports {wbs_we_i}]
+set_output_delay 4.3400 -clock [get_clocks {clk}] -min -add_delay [get_ports {io_oeb[0]}]
+set_output_delay 11.3200 -clock [get_clocks {clk}] -max -add_delay [get_ports {io_oeb[0]}]
+set_output_delay 4.3400 -clock [get_clocks {clk}] -min -add_delay [get_ports {io_oeb[1]}]
+set_output_delay 11.3200 -clock [get_clocks {clk}] -max -add_delay [get_ports {io_oeb[1]}]
+set_output_delay 4.3400 -clock [get_clocks {clk}] -min -add_delay [get_ports {io_oeb[2]}]
+set_output_delay 11.3200 -clock [get_clocks {clk}] -max -add_delay [get_ports {io_oeb[2]}]
 set_output_delay 0.0000 -clock [get_clocks {vco_clk}] -min -add_delay [get_ports {vco_enb_o}]
 set_output_delay 3.6200 -clock [get_clocks {vco_clk}] -max -add_delay [get_ports {vco_enb_o}]
 set_output_delay 1.3700 -clock [get_clocks {clk}] -min -add_delay [get_ports {wbs_ack_o}]
@@ -240,11 +246,17 @@ set_multicycle_path -setup\
 set_false_path\
     -from [get_clocks {clk}]\
     -to [get_clocks {vco_clk}]
+set_false_path\
+    -from [get_clocks {vco_clk}]\
+    -to [get_clocks {clk}]
 ###############################################################################
 # Environment
 ###############################################################################
 set_load -pin_load 0.1900 [get_ports {vco_enb_o}]
 set_load -pin_load 0.1900 [get_ports {wbs_ack_o}]
+set_load -pin_load 0.1900 [get_ports {io_oeb[2]}]
+set_load -pin_load 0.1900 [get_ports {io_oeb[1]}]
+set_load -pin_load 0.1900 [get_ports {io_oeb[0]}]
 set_load -pin_load 0.1900 [get_ports {wbs_dat_o[31]}]
 set_load -pin_load 0.1900 [get_ports {wbs_dat_o[30]}]
 set_load -pin_load 0.1900 [get_ports {wbs_dat_o[29]}]

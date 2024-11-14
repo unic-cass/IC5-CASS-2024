@@ -1,8 +1,8 @@
-CARAVEL_ROOT: /home/admin/projects/IC5-CASS-2024/caravel
-MCW_ROOT: /home/admin/projects/IC5-CASS-2024/mgmt_core_wrapper
+CARAVEL_ROOT: /home/cass/projects/IC5-CASS-2024/caravel
+MCW_ROOT: /home/cass/projects/IC5-CASS-2024/mgmt_core_wrapper
 PDK: sky130A
-PDK_ROOT: /home/admin/projects/IC5-CASS-2024/dependencies/pdks
-USER_PROJECT_ROOT: /home/admin/projects/IC5-CASS-2024
+PDK_ROOT: /home/cass/projects/IC5-CASS-2024/dependencies/pdks
+USER_PROJECT_ROOT: /home/cass/projects/IC5-CASS-2024
 caravan: false
 clk: 25
 emailto:
