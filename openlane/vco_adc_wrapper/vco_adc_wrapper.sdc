@@ -128,6 +128,10 @@ set_output_delay -max 8.41 -clock [get_clocks {clk}] [get_ports {wbs_ack_o}]
 set_output_delay -min 1.13 -clock [get_clocks {clk}] [get_ports {wbs_dat_o[*]}]
 set_output_delay -min 1.37 -clock [get_clocks {clk}] [get_ports {wbs_ack_o}]
 
+set out_ext_delay 2
+set_output_delay -max [expr $out_ext_delay + 9.32] -clock [get_clocks {clk}] [get_ports {io_oeb[*]}]
+set_output_delay -min [expr $out_ext_delay + 2.34] -clock [get_clocks {clk}] [get_ports {io_oeb[*]}]
+
 set_input_delay -max 3.17 -clock [get_clocks {vco_clk}] [get_ports {phase_in}]
 set_input_transition -max 0.92 [get_ports {phase_in}]
 set_input_transition -min 0.07 [get_ports {phase_in}]

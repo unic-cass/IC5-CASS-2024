@@ -69,7 +69,7 @@ module vco_adc_wrapper #(
     // IOs
     // input  [`MPRJ_IO_PADS-1:0] io_in,
     // output [`MPRJ_IO_PADS-1:0] io_out,
-    // output [`MPRJ_IO_PADS-1:0] io_oeb,
+    output [2:0] io_oeb,
 
     // IRQ
     // output [2:0] irq,
@@ -91,6 +91,7 @@ module vco_adc_wrapper #(
    reg 	     wbs_ack_reg;
 
    reg [1:0] 	 status_reg;
+   reg [2:0] 	 io_en_reg;
    reg [31:0] 	 num_data_reg;
    reg [31:0] 	 data_o;
    reg 		 full_reg;
@@ -250,8 +251,10 @@ module vco_adc_wrapper #(
 	 num_samples_reg	<= 0;
 	 capture_mode_reg		<= 1'b0;
 	 shift_factor_reg <= 4'b0;
+	 io_en_reg <= 3'b111;
       end else begin
 	 if (slave_sel && wen_w && wbs_adr_i[7:0] == 8'h00) begin
+	    io_en_reg <= wbs_dat_i[31:29];
 	    shift_factor_reg <= wbs_dat_i[28:25];
 	    ena_reg		<= wbs_dat_i[24];
 	    vco_en_reg		<= wbs_dat_i[23];
@@ -267,7 +270,7 @@ module vco_adc_wrapper #(
 
    always @* begin
       case (wbs_adr_i[7:0]) 
-	`REG_MPRJ_VCO_CONFIG: data_o <= {ena_reg, vco_en_reg,
+	`REG_MPRJ_VCO_CONFIG: data_o <= {io_en_reg, shift_factor_reg, ena_reg, vco_en_reg,
 					 capture_mode_reg, num_samples_reg,
 					 oversample_reg};
 	`REG_MPRJ_FIFO_DATA:  data_o <= fifo_out_w;
@@ -328,7 +331,7 @@ module vco_adc_wrapper #(
    
    // IO
    // assign io_out    = fifo_out_w;
-   // assign io_oeb = {(`MPRJ_IO_PADS-1){~io_en_reg}};
+   assign io_oeb = io_en_reg;
    //assign irq  = 3'b000;
    assign wbs_dat_o = data_o;
    assign vco_enb_o = ~vco_en_sync;

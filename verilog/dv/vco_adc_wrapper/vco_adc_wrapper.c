@@ -36,6 +36,7 @@ static void print_hex(uint32_t data){
 #define reg_mprj_status  (*(volatile uint32_t*)0x30000008)
 #define reg_mprj_no_data (*(volatile uint32_t*)0x3000000C)
 
+#define IO_EN(a) ((a & 0x7) << 29)
 #define SHIFT_FACTOR(a) ((a & 0xf) << 25)
 #define FILTER_EN	(1 << 24)
 #define VCO_EN	(1 << 23)
@@ -151,7 +152,7 @@ void main()
     // Flag start of the test
     reg_mprj_datal = 0xB4000000;
 
-    reg_mprj_slave = SHIFT_FACTOR(10) | VCO_ADC0_EN | NUM_SAMPLES(2048) | OVERSAMPLE(500);
+    reg_mprj_slave = IO_EN(0x7) | SHIFT_FACTOR(10) | VCO_ADC0_EN | NUM_SAMPLES(2048) | OVERSAMPLE(500);
     while((reg_mprj_status & 0x1) != 0);
     // read until empty
     for (int i = 0; i < 1024; ++i){

@@ -191,6 +191,7 @@ module user_project_wrapper #(
          .wbs_dat_i(wbs_dat_i),
          .wbs_ack_o(wbs_ack_o),
          .wbs_dat_o(wbs_dat_o),
+	 .io_oeb(io_oeb[25:23]),
          .phase_in(phase0),
          .vco_enb_o(vco_enb));
 
