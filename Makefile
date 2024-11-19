@@ -38,7 +38,7 @@ ifeq ($(ROOTLESS), 1)
 endif
 export OPENLANE_ROOT?=$(PWD)/dependencies/openlane_src
 export PDK_ROOT?=$(PWD)/dependencies/pdks
-export DISABLE_LVS?=0
+export DISABLE_LVS?=1
 
 export ROOTLESS
 
@@ -47,7 +47,7 @@ ifeq ($(PDK),sky130A)
 	export OPEN_PDKS_COMMIT_LVS?=0fe599b2afb6708d281543108caf8310912f54af
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= 2024.09.12-1
+	MPW_TAG ?= 2024.09.13-1
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite

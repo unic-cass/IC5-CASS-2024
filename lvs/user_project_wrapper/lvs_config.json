@@ -2,7 +2,7 @@
 	"TOP_SOURCE": "user_project_wrapper",
 	"TOP_LAYOUT": "$TOP_SOURCE",
 	"EXTRACT_FLATGLOB": [
-		""
+		"sky130_fd_pr__res_xhigh_po_0p35_*"
 	],
 	"EXTRACT_ABSTRACT": [
 		"*__fill_*",
@@ -13,10 +13,11 @@
 		"bec"
 	],
 	"LVS_NOFLATTEN": [
-		"sky130_*"
+		"sky130_fd_sc_*",
+		"sky130_fd_pr__res_xhigh_po_0p35"
 	],
 	"LVS_FLATTEN": [
-		""
+	    ""
 	],
 	"LVS_IGNORE": [
 		""
